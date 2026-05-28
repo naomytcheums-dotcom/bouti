@@ -748,7 +748,7 @@
             color: rgba(0,0,0,0.5);
         }
 
-        /* RESPONSIVE MOBILE - MEME DESIGN QUE CONTACT */
+        /* RESPONSIVE MOBILE - IMAGES 2 FOIS PLUS GRANDES */
         @media (max-width: 1024px) {
             .video-single-row {
                 flex-direction: column;
@@ -802,16 +802,27 @@
             }
             .products-grid {
                 grid-template-columns: 1fr;
-                gap: 25px;
+                gap: 30px;
             }
+            /* TAILLE DES IMAGES DOUBLÉE SUR MOBILE */
             .product-img {
-                height: 220px;
+                height: 440px;
             }
             .product-title {
-                font-size: 0.95rem;
+                font-size: 1.1rem;
+            }
+            .product-desc {
+                font-size: 0.9rem;
+            }
+            .product-price .current {
+                font-size: 1.3rem;
+            }
+            .btn-add {
+                padding: 10px 24px;
+                font-size: 0.85rem;
             }
             .video-frame video {
-                height: 200px;
+                height: 240px;
             }
             .gallery-section h3 {
                 font-size: 1.4rem;
@@ -844,12 +855,16 @@
             .hero-overlay p {
                 font-size: 0.8rem;
             }
+            /* TAILLE DES IMAGES ENCORE PLUS GRANDE SUR TRÈS PETIT ÉCRAN */
             .product-img {
-                height: 180px;
+                height: 380px;
+            }
+            .product-title {
+                font-size: 1rem;
             }
             .btn-add {
                 padding: 8px 20px;
-                font-size: 0.75rem;
+                font-size: 0.8rem;
             }
         }
     </style>
