@@ -136,7 +136,7 @@
             color: #FFD166;
         }
 
-        /* MENU HAMBURGER (visible uniquement sur mobile) */
+        /* MENU HAMBURGER */
         .menu-toggle {
             display: none;
             background: transparent;
@@ -460,12 +460,13 @@
             line-height: 1.6;
         }
 
-        /* SECTION PRODUITS POPULAIRES */
+        /* SECTION PRODUITS POPULAIRES - NOUVEAU STYLE IDENTIQUE A LA GALERIE VIDEO */
         .popular-section {
             margin: 60px 0 40px;
         }
         .popular-header {
-            margin-bottom: 35px;
+            text-align: center;
+            margin-bottom: 40px;
         }
         .popular-header h2 {
             font-size: 1.8rem;
@@ -477,21 +478,32 @@
             color: #5a6e7a;
             font-size: 0.95rem;
             margin-top: 8px;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
         }
+        /* Grille style galerie vidéo : même format que .video-single-row */
         .popular-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 35px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: center;
         }
         .popular-card {
-            background: white;
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-            transition: 0.3s;
+            flex: 1;
+            min-width: 280px;
+            max-width: 320px;
+            background: transparent;
+            transition: transform 0.2s;
         }
         .popular-card:hover {
             transform: translateY(-5px);
+        }
+        .popular-frame {
+            background: #000;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
         .popular-img {
             width: 100%;
@@ -499,71 +511,50 @@
             object-fit: cover;
             display: block;
         }
-        .popular-content {
-            padding: 20px;
+        .popular-text-below {
+            margin-top: 15px;
+            padding: 0 10px;
+            text-align: center;
         }
-        .popular-category {
+        .popular-text-below .popular-category {
             font-size: 0.7rem;
             color: #ff0000;
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 5px;
+            font-weight: 600;
         }
-        .popular-title {
-            font-size: 1.2rem;
-            font-weight: 800;
+        .popular-text-below .popular-title {
+            font-size: 1rem;
+            font-weight: 700;
             color: #1e2a2e;
             margin-bottom: 8px;
         }
-        .popular-desc {
+        .popular-text-below .popular-desc {
             font-size: 0.8rem;
             color: #5a6e7a;
-            line-height: 1.5;
+            line-height: 1.4;
             margin-bottom: 12px;
         }
-        .popular-price {
+        .popular-price-row {
             display: flex;
-            gap: 15px;
-            align-items: baseline;
             flex-wrap: wrap;
-            margin-bottom: 12px;
-        }
-        .price-100g {
-            background: #f0f0f0;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: #ff0000;
-        }
-        .price-150g {
-            background: #f0f0f0;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: #ff0000;
-        }
-        .btn-add-popular {
-            width: 100%;
-            padding: 10px;
-            background: #ff0000;
-            color: white;
-            border: none;
-            border-radius: 40px;
-            font-weight: 700;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: 0.2s;
-            margin-top: 5px;
-            display: flex;
-            align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
+            margin-bottom: 0px;
         }
-        .btn-add-popular:hover {
-            background: #cc0000;
+        .price-100g, .price-150g {
+            background: #f0f0f0;
+            padding: 5px 12px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #ff0000;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
+        /* Pas de boutons ajouter dans la section populaire */
 
         /* CATEGORIES HEADER */
         .category-header {
@@ -855,13 +846,16 @@
 
         /* RESPONSIVE */
         @media (max-width: 1024px) {
-            .video-single-row {
+            .video-single-row, .popular-grid {
                 flex-direction: column;
                 align-items: center;
             }
-            .video-card-large {
+            .video-card-large, .popular-card {
                 width: 100%;
                 max-width: 500px;
+            }
+            .popular-img {
+                height: 340px;
             }
         }
 
@@ -889,7 +883,7 @@
                 font-size: 0.9rem;
             }
             .popular-img {
-                height: 400px;
+                height: 280px;
             }
             .popular-title {
                 font-size: 1.1rem;
@@ -927,7 +921,7 @@
                 height: 380px;
             }
             .popular-img {
-                height: 340px;
+                height: 260px;
             }
         }
     </style>
@@ -984,7 +978,7 @@
         </div>
 
         <div class="container">
-            <!-- NOUVELLE SECTION PRODUITS POPULAIRES (SAVONS) -->
+            <!-- SECTION PRODUITS POPULAIRES (SAVONS) - STYLE IDENTIQUE A GALERIE VIDEO -->
             <div class="popular-section" id="popularSection">
                 <div class="popular-header">
                     <h2 data-key="popular_title">✨ Produits populaires</h2>
@@ -1075,7 +1069,7 @@
     </div>
 
     <script>
-        // PRODUITS EXISTANTS
+        // PRODUITS EXISTANTS (inchangés)
         const products = [
             { id: 1, name: "Vin de palme traditionnel", name_en: "Traditional Palm Wine", category: "vin", price: 4000, oldPrice: null, desc: "Vin de palme produit localement par les étudiants", desc_en: "Locally produced palm wine", stock: 30, delivery: "48h", delivery_en: "48h", img: "vin1.jpg", badge: null, badge_en: null },
             { id: 2, name: "Plantain Macaroni", name_en: "Plantain Macaroni Chips", category: "alimentaire", price: 1500, oldPrice: 2000, desc: "Chips de plantain maison en forme de macaroni", desc_en: "Homemade plantain chips in macaroni shape", stock: 75, delivery: "24h", delivery_en: "24h", img: "pl.jpg", badge: "best", badge_en: "BEST SELLER" },
@@ -1090,7 +1084,7 @@
             { id: 11, name: "Fongicide", name_en: "Fungicide", category: "sante", price: 4500, oldPrice: 6000, desc: "Traitement antifongique efficace", desc_en: "Effective antifungal treatment", stock: 35, delivery: "48h", delivery_en: "48h", img: "fo.jpg", badge: "promo", badge_en: "PROMO" }
         ];
 
-        // SAVONS POPULAIRES
+        // SAVONS POPULAIRES (avec texte complet, sans boutons)
         const popularSoaps = [
             { id: 101, name: "Savon au Curcuma", name_en: "Turmeric Soap", img: "curcuma.jpg", desc: "Savon éclat naturel – Anti-taches, illumine la peau et lutte contre l'acné. Idéal pour un teint uniforme.", desc_en: "Natural radiance soap – Anti-spot, brightens skin and fights acne. Perfect for even complexion.", price100: 1000, price150: 2000 },
             { id: 102, name: "Savon au Baobab", name_en: "Baobab Soap", img: "baobab.jpg", desc: "Ultra hydratant, riche en vitamines. Apaise les peaux sèches et sensibles, redonne élasticité.", desc_en: "Ultra moisturizing, rich in vitamins. Soothes dry and sensitive skin, restores elasticity.", price100: 1000, price150: 2000 },
@@ -1147,21 +1141,22 @@
         if(closeMenuBtn) closeMenuBtn.addEventListener('click', closeMenuFunc);
         if(menuBackdrop) menuBackdrop.addEventListener('click', closeMenuFunc);
 
+        // Rendu savons populaires (sans boutons, texte complet)
         function renderPopularSoaps() {
             const grid = document.getElementById('popularGrid');
             grid.innerHTML = popularSoaps.map(soap => `
                 <div class="popular-card">
-                    <img src="${soap.img}" alt="${currentLang === 'fr' ? soap.name : soap.name_en}" class="popular-img" onerror="this.src='https://placehold.co/400x400/f0f0f0/999?text=Savon'">
-                    <div class="popular-content">
-                        <div class="popular-category">${currentLang === 'fr' ? 'Savon Artisanal' : 'Artisan Soap'}</div>
+                    <div class="popular-frame">
+                        <img src="${soap.img}" alt="${currentLang === 'fr' ? soap.name : soap.name_en}" class="popular-img" onerror="this.src='https://placehold.co/400x400/f0f0f0/999?text=Savon'">
+                    </div>
+                    <div class="popular-text-below">
+                        <div class="popular-category">${currentLang === 'fr' ? 'SAVON ARTISANAL' : 'ARTISAN SOAP'}</div>
                         <div class="popular-title">${currentLang === 'fr' ? soap.name : soap.name_en}</div>
                         <div class="popular-desc">${currentLang === 'fr' ? soap.desc : soap.desc_en}</div>
-                        <div class="popular-price">
+                        <div class="popular-price-row">
                             <span class="price-100g"><i class="fas fa-weight-hanging"></i> 100g - ${soap.price100.toLocaleString()} FCFA</span>
                             <span class="price-150g"><i class="fas fa-weight-hanging"></i> 150g - ${soap.price150.toLocaleString()} FCFA</span>
                         </div>
-                        <button class="btn-add-popular" onclick="addToCart(${soap.id + 1000}, '${(currentLang === 'fr' ? soap.name : soap.name_en).replace(/'/g, "\\'")} - 100g', ${soap.price100}, '${soap.img}')"><i class="fas fa-shopping-cart"></i> ${currentLang === 'fr' ? 'Ajouter 100g' : 'Add 100g'}</button>
-                        <button class="btn-add-popular" style="margin-top:8px; background:#e65c00;" onclick="addToCart(${soap.id + 2000}, '${(currentLang === 'fr' ? soap.name : soap.name_en).replace(/'/g, "\\'")} - 150g', ${soap.price150}, '${soap.img}')"><i class="fas fa-shopping-cart"></i> ${currentLang === 'fr' ? 'Ajouter 150g' : 'Add 150g'}</button>
                     </div>
                 </div>
             `).join('');
