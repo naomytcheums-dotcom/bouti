@@ -430,9 +430,9 @@
             line-height: 1.6;
         }
 
-        /* SECTION SAVONS PHARES */
+        /* SECTION SAVONS PHARES - VERSION CORRIGEE */
         .soap-showcase {
-            padding: 60px 0 20px;
+            padding: 60px 0 40px;
             background: #fffaf5;
         }
         .section-header {
@@ -453,71 +453,66 @@
         .soap-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 35px;
+            gap: 30px;
         }
         .soap-card {
             background: white;
-            border-radius: 28px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            transition: transform 0.2s;
         }
         .soap-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 35px rgba(0,0,0,0.1);
+            transform: translateY(-3px);
         }
+        /* IMAGE PLUS PETITE */
         .soap-img {
             width: 100%;
-            aspect-ratio: 3 / 4;
+            aspect-ratio: 1 / 1;
             object-fit: cover;
             display: block;
-            transition: 0.3s;
         }
         .soap-info {
-            padding: 20px 18px 24px;
+            padding: 16px 14px 20px;
         }
         .soap-name {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 800;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             color: #1e2a2e;
         }
         .soap-desc {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: #5a6e7a;
             line-height: 1.4;
-            margin-bottom: 15px;
+            margin-bottom: 14px;
         }
         .soap-prices {
             display: flex;
             justify-content: space-between;
             gap: 12px;
-            margin-bottom: 18px;
-            flex-wrap: wrap;
+            margin-bottom: 16px;
         }
         .price-item {
             background: #fef2e8;
-            border-radius: 40px;
-            padding: 6px 12px;
+            border-radius: 30px;
+            padding: 6px 8px;
             text-align: center;
             flex: 1;
-            min-width: 80px;
         }
         .price-weight {
             font-size: 0.7rem;
-            font-weight: 600;
+            font-weight: 700;
             color: #ff0000;
-            letter-spacing: 0.5px;
         }
         .price-amount {
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 800;
             color: #1e2a2e;
         }
         .soap-actions {
             display: flex;
             gap: 12px;
-            margin-top: 8px;
         }
         .btn-soap {
             flex: 1;
@@ -525,46 +520,38 @@
             border: none;
             color: white;
             font-weight: 600;
-            padding: 10px 0;
+            padding: 8px 0;
             border-radius: 40px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             cursor: pointer;
             transition: 0.2s;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
+            gap: 5px;
         }
         .btn-soap:hover {
             background: #cc0000;
-            transform: scale(1.02);
         }
-        @media (max-width: 1024px) {
-            .soap-grid {
-                gap: 25px;
-            }
-        }
-        @media (max-width: 850px) {
+
+        @media (max-width: 900px) {
             .soap-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 30px;
-            }
-            .section-header h2 {
-                font-size: 1.7rem;
+                gap: 25px;
             }
         }
         @media (max-width: 550px) {
             .soap-grid {
                 grid-template-columns: 1fr;
-                max-width: 380px;
+                max-width: 350px;
                 margin: 0 auto;
             }
-            .soap-img {
-                aspect-ratio: 1 / 1;
+            .section-header h2 {
+                font-size: 1.6rem;
             }
         }
 
-        /* PRODUITS */
+        /* PRODUITS (suite existante) */
         .products-section {
             margin: 30px 0 50px;
         }
@@ -680,8 +667,6 @@
         .btn-add:hover {
             background: #cc0000;
         }
-
-        /* GALERIE VIDÉO */
         .gallery-section {
             margin: 60px 0;
         }
@@ -731,8 +716,6 @@
             color: #5a6e7a;
             line-height: 1.4;
         }
-
-        /* FOOTER */
         footer {
             background: transparent;
             margin-top: 40px;
@@ -819,7 +802,7 @@
     <!-- HERO BANNER -->
     <div class="hero-banner"><div class="hero-overlay"><h2 data-key="hero_title">La boutique officielle de l'IUT de Douala</h2><p data-key="hero_text">Découvrez les produits fabriqués par nos étudiants : produits de beauté, snacks, vins, pommades et bien plus encore. Soutenez le savoir-faire local !</p></div></div>
 
-    <!-- === SECTION SAVONS PHARES IUT === -->
+    <!-- === SECTION SAVONS PHARES IUT (texte sur la page, images plus petites) === -->
     <div class="soap-showcase">
         <div class="container">
             <div class="section-header">
@@ -842,7 +825,7 @@
 <div class="cart-sidebar" id="cartSidebar"><div class="cart-header"><h2><i class="fas fa-shopping-cart"></i> Mon Panier</h2><button class="close-cart" id="closeCartBtn">&times;</button></div><div class="cart-items" id="cartItems"><div class="empty-cart">Votre panier est vide</div></div><div class="cart-footer" id="cartFooter" style="display: none;"><div class="cart-total"><span>Total</span><span id="cartTotal">0 FCFA</span></div><button class="checkout-btn" id="checkoutBtn">Passer la commande</button></div></div>
 
 <script>
-    // PRODUITS SAVONS (spécifiques)
+    // Données des savons (texte complet sur la page)
     const soapProducts = [
         { id: 101, name: "Savon Baobab", name_en: "Baobab Soap", img: "baobab.jpeg", desc: "Idéal pour les peaux assoiffées, riche en extrait de baobab, hydratation intense et éclat naturel.", desc_en: "Ideal for thirsty skin, rich in baobab extract, intense hydration and natural glow.", price100: 1000, price150: 2000 },
         { id: 102, name: "Savon Curcuma", name_en: "Turmeric Soap", img: "curcuma.jpeg", desc: "Anti-inflammatoire, lutte contre les imperfections et unifie le teint. Éclat garanti.", desc_en: "Anti-inflammatory, fights imperfections and evens skin tone. Guaranteed radiance.", price100: 1000, price150: 2000 },
@@ -857,7 +840,7 @@
     function loadCart() { const saved = localStorage.getItem('boutikCart'); if (saved) { cart = JSON.parse(saved); } updateCartUI(); }
 
     function addSoapToCart(soap, weight, price) {
-        const productName = `${soap.name} ${weight}g (${currentLang === 'fr' ? soap.name : soap.name_en})`;
+        const productName = `${currentLang === 'fr' ? soap.name : soap.name_en} ${weight}g`;
         cart.push({ id: Date.now() + Math.random(), name: productName, price: price, img: soap.img, quantity: 1, weight: weight });
         saveCart();
         updateCartUI();
@@ -892,46 +875,80 @@
     function openCart() { document.getElementById('cartSidebar').classList.add('open'); document.getElementById('cartOverlay').classList.add('show'); }
     function closeCart() { document.getElementById('cartSidebar').classList.remove('open'); document.getElementById('cartOverlay').classList.remove('show'); }
 
-    // RENDER SAVONS
+    // RENDER DES SAVONS (texte complet visible sur la page)
     function renderSoaps() {
         const grid = document.getElementById('soapGrid');
         grid.innerHTML = soapProducts.map(soap => `
             <div class="soap-card">
-                <img src="${soap.img}" class="soap-img" alt="${soap.name}" onerror="this.src='https://placehold.co/400x500/f7ede3/8b5a2b?text=Savon+IUT'">
+                <img src="${soap.img}" class="soap-img" alt="${soap.name}" onerror="this.src='https://placehold.co/400x400/f7ede3/8b5a2b?text=Savon+IUT'">
                 <div class="soap-info">
                     <div class="soap-name">${currentLang === 'fr' ? soap.name : soap.name_en}</div>
                     <div class="soap-desc">${currentLang === 'fr' ? soap.desc : soap.desc_en}</div>
                     <div class="soap-prices">
-                        <div class="price-item"><div class="price-weight">100g</div><div class="price-amount">1000 FCFA</div></div>
-                        <div class="price-item"><div class="price-weight">150g</div><div class="price-amount">2000 FCFA</div></div>
+                        <div class="price-item"><div class="price-weight">100g</div><div class="price-amount">${soap.price100.toLocaleString()} FCFA</div></div>
+                        <div class="price-item"><div class="price-weight">150g</div><div class="price-amount">${soap.price150.toLocaleString()} FCFA</div></div>
                     </div>
                     <div class="soap-actions">
-                        <button class="btn-soap" onclick="addSoapToCart(${JSON.stringify(soap).replace(/"/g, '&quot;')}, 100, 1000)"><i class="fas fa-cart-plus"></i> 100g</button>
-                        <button class="btn-soap" onclick="addSoapToCart(${JSON.stringify(soap).replace(/"/g, '&quot;')}, 150, 2000)"><i class="fas fa-cart-plus"></i> 150g</button>
+                        <button class="btn-soap" onclick="addSoapToCart(${JSON.stringify(soap).replace(/"/g, '&quot;')}, 100, ${soap.price100})"><i class="fas fa-cart-plus"></i> 100g</button>
+                        <button class="btn-soap" onclick="addSoapToCart(${JSON.stringify(soap).replace(/"/g, '&quot;')}, 150, ${soap.price150})"><i class="fas fa-cart-plus"></i> 150g</button>
                     </div>
                 </div>
             </div>
         `).join('');
     }
 
-    // produits existants (version simplifiée mais complète)
+    // Produits existants simplifiés pour la démo
     const products = [
         { id: 1, name: "Vin de palme traditionnel", name_en: "Traditional Palm Wine", category: "vin", price: 4000, oldPrice: null, desc: "Vin de palme produit localement par les étudiants", desc_en: "Locally produced palm wine", stock: 30, delivery: "48h", delivery_en: "48h", img: "vin1.jpg", badge: null },
         { id: 2, name: "Plantain Macaroni", name_en: "Plantain Macaroni Chips", category: "alimentaire", price: 1500, oldPrice: 2000, desc: "Chips de plantain maison en forme de macaroni", desc_en: "Homemade plantain chips in macaroni shape", stock: 75, delivery: "24h", delivery_en: "24h", img: "pl.jpg", badge: "best" }
     ];
     const videos = [{ src: "ii.mp4", title: "Fabrication des polos personnalisés", title_en: "Custom Polo Shirt Manufacturing", desc: "Découvrez comment nos étudiants créent des polos uniques.", desc_en: "Discover how our students create unique polo shirts." }];
 
-    function renderProducts(category) { const grid = document.getElementById("productsGrid"); const filtered = category === "all" ? products : products.filter(p => p.category === category); grid.innerHTML = filtered.map(p => `<div><div class="product-frame"><img src="${p.img}" class="product-img"></div><div class="product-text-below"><div class="product-title">${currentLang === 'fr' ? p.name : p.name_en}</div><div class="product-desc">${currentLang === 'fr' ? p.desc : p.desc_en}</div><div class="product-price"><span class="current">${p.price.toLocaleString()} FCFA</span></div><button class="btn-add" onclick="alert('Ajouté (démo)')">Ajouter</button></div></div>`).join(""); }
-    function renderVideos() { const grid = document.getElementById("videoGrid"); grid.innerHTML = videos.map(v => `<div class="video-card-large"><div class="video-frame"><video src="${v.src}" autoplay loop muted playsinline></video></div><div class="video-text-below"><h4>${currentLang === 'fr' ? v.title : v.title_en}</h4><p>${currentLang === 'fr' ? v.desc : v.desc_en}</p></div></div>`).join(""); }
+    function renderProducts(category) { 
+        const grid = document.getElementById("productsGrid"); 
+        const filtered = category === "all" ? products : products.filter(p => p.category === category); 
+        grid.innerHTML = filtered.map(p => `<div><div class="product-frame"><img src="${p.img}" class="product-img" onerror="this.src='https://placehold.co/400x280/f0f0f0/999?text=Produit'"></div><div class="product-text-below"><div class="product-title">${currentLang === 'fr' ? p.name : p.name_en}</div><div class="product-desc">${currentLang === 'fr' ? p.desc : p.desc_en}</div><div class="product-price"><span class="current">${p.price.toLocaleString()} FCFA</span></div><button class="btn-add" onclick="alert('Ajouté (démo)')">${currentLang === 'fr' ? 'Ajouter' : 'Add'}</button></div></div>`).join(""); 
+    }
+    function renderVideos() { 
+        const grid = document.getElementById("videoGrid"); 
+        grid.innerHTML = videos.map(v => `<div class="video-card-large"><div class="video-frame"><video src="${v.src}" autoplay loop muted playsinline></video></div><div class="video-text-below"><h4>${currentLang === 'fr' ? v.title : v.title_en}</h4><p>${currentLang === 'fr' ? v.desc : v.desc_en}</p></div></div>`).join(""); 
+    }
 
-    const translations = { fr: { hero_title: "La boutique officielle de l'IUT de Douala", hero_text: "Découvrez les produits fabriqués par nos étudiants...", products_title: "Nos produits", products_subtitle: "Sélectionnez une catégorie", gallery_title: "Galerie Exposition", footer_brand: "Boutik Ecole", footer_desc: "La boutique officielle des étudiants...", footer_links_title: "Liens", footer_contact_title: "Contact", footer_address: "IUT de Douala, Cameroun", copyright: "© 2026 Boutik Ecole", cat_all: "Toutes", cat_wine: "Vins", cat_food: "Alimentaire", cat_health: "Santé", cat_beauty: "Beauté", cat_household: "Ménage", soap_title: "🧼 Savons Phares de l'IUT", soap_subtitle: "Découvrez notre gamme artisanale 100% naturelle, fabriquée par nos étudiants – excellence et tradition camerounaise." }, en: { hero_title: "Official Store of IUT Douala", hero_text: "Discover products made by our students...", products_title: "Our Products", products_subtitle: "Select a category", gallery_title: "Exhibition Gallery", footer_brand: "Boutik Ecole", footer_desc: "The official shop of IUT Douala students...", footer_links_title: "Links", footer_contact_title: "Contact", footer_address: "IUT of Douala, Cameroon", copyright: "© 2026 Boutik Ecole", cat_all: "All", cat_wine: "Wines", cat_food: "Food", cat_health: "Health", cat_beauty: "Beauty", cat_household: "Household", soap_title: "🧼 IUT's Signature Soaps", soap_subtitle: "Discover our 100% natural handmade range crafted by our students – Cameroonian excellence and tradition." } };
-    function updateLanguage(lang) { currentLang = lang; const t = translations[lang]; document.querySelector('[data-key="hero_title"]').textContent = t.hero_title; document.querySelector('[data-key="hero_text"]').textContent = t.hero_text; document.querySelector('[data-key="products_title"]').textContent = t.products_title; document.querySelector('[data-key="products_subtitle"]').textContent = t.products_subtitle; document.querySelector('[data-key="gallery_title"]').textContent = t.gallery_title; document.querySelector('[data-key="footer_brand"]').textContent = t.footer_brand; document.querySelector('[data-key="footer_desc"]').textContent = t.footer_desc; document.querySelector('[data-key="footer_links_title"]').textContent = t.footer_links_title; document.querySelector('[data-key="footer_contact_title"]').textContent = t.footer_contact_title; if(document.querySelector('[data-key="footer_address"]')) document.querySelector('[data-key="footer_address"]').textContent = t.footer_address; document.querySelector('[data-key="copyright"]').textContent = t.copyright; document.querySelector('[data-key="soap_title"]').textContent = t.soap_title; document.querySelector('[data-key="soap_subtitle"]').textContent = t.soap_subtitle; renderSoaps(); renderProducts(document.getElementById("categorySelect").value); renderVideos(); updateCartUI(); }
+    const translations = { 
+        fr: { hero_title: "La boutique officielle de l'IUT de Douala", hero_text: "Découvrez les produits fabriqués par nos étudiants : produits de beauté, snacks, vins, pommades et bien plus encore. Soutenez le savoir-faire local !", products_title: "Nos produits", products_subtitle: "Sélectionnez une catégorie pour filtrer les produits", gallery_title: "Galerie Exposition", footer_brand: "Boutik Ecole", footer_desc: "La boutique officielle des étudiants de l'IUT de Douala. Achetez local, soutenez le talent.", footer_links_title: "Liens", footer_contact_title: "Contact", footer_address: "IUT de Douala, Cameroun", copyright: "© 2026 Boutik Ecole – IUT de Douala. Tous droits réservés.", cat_all: "Toutes les catégories", cat_wine: "Vins & Boissons", cat_food: "Alimentaire", cat_health: "Santé & Bien-être", cat_beauty: "Beauté & Soins", cat_household: "Entretien & Ménage", soap_title: "🧼 Savons Phares de l'IUT", soap_subtitle: "Découvrez notre gamme artisanale 100% naturelle, fabriquée par nos étudiants – excellence et tradition camerounaise." }, 
+        en: { hero_title: "Official Store of IUT Douala", hero_text: "Discover products made by our students: beauty products, snacks, wines, ointments and more. Support local know-how!", products_title: "Our Products", products_subtitle: "Select a category to filter products", gallery_title: "Exhibition Gallery", footer_brand: "Boutik Ecole", footer_desc: "The official shop of IUT Douala students. Buy local, support talent.", footer_links_title: "Links", footer_contact_title: "Contact", footer_address: "IUT of Douala, Cameroon", copyright: "© 2026 Boutik Ecole – IUT of Douala. All rights reserved.", cat_all: "All categories", cat_wine: "Wines & Drinks", cat_food: "Food", cat_health: "Health & Wellness", cat_beauty: "Beauty & Care", cat_household: "Household & Cleaning", soap_title: "🧼 IUT's Signature Soaps", soap_subtitle: "Discover our 100% natural handmade range crafted by our students – Cameroonian excellence and tradition." } 
+    };
+    
+    function updateLanguage(lang) { 
+        currentLang = lang; const t = translations[lang]; 
+        document.querySelector('[data-key="hero_title"]').textContent = t.hero_title; 
+        document.querySelector('[data-key="hero_text"]').textContent = t.hero_text; 
+        document.querySelector('[data-key="products_title"]').textContent = t.products_title; 
+        document.querySelector('[data-key="products_subtitle"]').textContent = t.products_subtitle; 
+        document.querySelector('[data-key="gallery_title"]').textContent = t.gallery_title; 
+        document.querySelector('[data-key="footer_brand"]').textContent = t.footer_brand; 
+        document.querySelector('[data-key="footer_desc"]').textContent = t.footer_desc; 
+        document.querySelector('[data-key="footer_links_title"]').textContent = t.footer_links_title; 
+        document.querySelector('[data-key="footer_contact_title"]').textContent = t.footer_contact_title; 
+        if(document.querySelector('[data-key="footer_address"]')) document.querySelector('[data-key="footer_address"]').textContent = t.footer_address; 
+        document.querySelector('[data-key="copyright"]').textContent = t.copyright; 
+        document.querySelector('[data-key="soap_title"]').textContent = t.soap_title; 
+        document.querySelector('[data-key="soap_subtitle"]').textContent = t.soap_subtitle; 
+        renderSoaps(); 
+        renderProducts(document.getElementById("categorySelect").value); 
+        renderVideos(); 
+        updateCartUI(); 
+    }
+    
     function toggleLang() { currentLang = currentLang === 'fr' ? 'en' : 'fr'; updateLanguage(currentLang); }
 
     document.getElementById("categorySelect").addEventListener("change", (e) => renderProducts(e.target.value));
-    document.getElementById("cartIcon").addEventListener("click", openCart); document.getElementById("closeCartBtn").addEventListener("click", closeCart); document.getElementById("cartOverlay").addEventListener("click", closeCart);
-    document.getElementById("checkoutBtn").addEventListener("click", () => { if(cart.length){ alert(`Commande total: ${cart.reduce((s,i)=>s+(i.price*i.quantity),0)} FCFA`); cart=[]; saveCart(); updateCartUI(); closeCart(); } });
-    document.getElementById("globeBtn").addEventListener("click", toggleLang); document.getElementById("mobileGlobeBtn").addEventListener("click", () => { toggleLang(); closeMenu(); });
+    document.getElementById("cartIcon").addEventListener("click", openCart); 
+    document.getElementById("closeCartBtn").addEventListener("click", closeCart); 
+    document.getElementById("cartOverlay").addEventListener("click", closeCart);
+    document.getElementById("checkoutBtn").addEventListener("click", () => { if(cart.length){ alert(`${currentLang === 'fr' ? 'Commande passée ! Total:' : 'Order placed! Total:'} ${cart.reduce((s,i)=>s+(i.price*i.quantity),0).toLocaleString()} FCFA`); cart=[]; saveCart(); updateCartUI(); closeCart(); } });
+    document.getElementById("globeBtn").addEventListener("click", toggleLang); 
+    document.getElementById("mobileGlobeBtn").addEventListener("click", () => { toggleLang(); closeMenu(); });
 
     const menuToggle = document.getElementById('menuToggleBtn'), mobileMenuDiv = document.getElementById('mobileMenu'), menuBackdrop = document.getElementById('menuBackdrop'), closeMenuBtn = document.getElementById('closeMenuBtn');
     function openMenu() { mobileMenuDiv.classList.add('open'); menuBackdrop.classList.add('show'); document.body.style.overflow = 'hidden'; }
