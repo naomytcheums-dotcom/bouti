@@ -915,13 +915,13 @@
                     <p data-key="products_subtitle">Sélectionnez une catégorie pour filtrer les produits</p>
                 </div>
                 <div class="category-menu">
-                    <select id="categorySelect" class="category-select">
-                        <option value="all">Toutes les catégories</option>
-                        <option value="vin">Vins & Boissons</option>
-                        <option value="alimentaire">Alimentaire</option>
-                        <option value="sante">Santé & Bien-être</option>
-                        <option value="beaute">Beauté & Soins</option>
-                        <option value="menage">Entretien & Ménage</option>
+                    <select id="categorySelect" class="category-select" data-key="category_select_label">
+                        <option value="all" data-key="cat_all">Toutes les catégories</option>
+                        <option value="vin" data-key="cat_wine">Vins & Boissons</option>
+                        <option value="alimentaire" data-key="cat_food">Alimentaire</option>
+                        <option value="sante" data-key="cat_health">Santé & Bien-être</option>
+                        <option value="beaute" data-key="cat_beauty">Beauté & Soins</option>
+                        <option value="menage" data-key="cat_household">Entretien & Ménage</option>
                     </select>
                 </div>
             </div>
@@ -944,7 +944,7 @@
             <div class="container">
                 <div class="footer-content">
                     <div class="footer-col">
-                        <h3>Boutik Ecole</h3>
+                        <h3 data-key="footer_brand">Boutik Ecole</h3>
                         <p data-key="footer_desc">La boutique officielle des étudiants de l'IUT de Douala. Achetez local, soutenez le talent.</p>
                         <div class="social-icons">
                             <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -954,7 +954,7 @@
                         </div>
                     </div>
                     <div class="footer-col">
-                        <h3 data-footer-title="links">Liens</h3>
+                        <h3 data-key="footer_links_title">Liens</h3>
                         <ul>
                             <li><a href="index.html" data-footer-link="home">Accueil</a></li>
                             <li><a href="boutique.html" data-footer-link="shop">Boutique</a></li>
@@ -964,9 +964,9 @@
                         </ul>
                     </div>
                     <div class="footer-col">
-                        <h3 data-footer-title="contact">Contact</h3>
+                        <h3 data-key="footer_contact_title">Contact</h3>
                         <ul>
-                            <li><i class="fas fa-map-marker-alt"></i> IUT de Douala, Cameroun</li>
+                            <li><i class="fas fa-map-marker-alt"></i> <span data-key="footer_address">IUT de Douala, Cameroun</span></li>
                             <li><i class="fas fa-envelope"></i> contact@boutikecole.com</li>
                             <li><i class="fas fa-phone-alt"></i> +237 6 55 88 99 00</li>
                         </ul>
@@ -983,43 +983,43 @@
     <div class="cart-overlay" id="cartOverlay"></div>
     <div class="cart-sidebar" id="cartSidebar">
         <div class="cart-header">
-            <h2><i class="fas fa-shopping-cart"></i> Mon Panier</h2>
+            <h2 data-key="cart_title"><i class="fas fa-shopping-cart"></i> Mon Panier</h2>
             <button class="close-cart" id="closeCartBtn">&times;</button>
         </div>
         <div class="cart-items" id="cartItems">
-            <div class="empty-cart">Votre panier est vide</div>
+            <div class="empty-cart" data-key="cart_empty">Votre panier est vide</div>
         </div>
         <div class="cart-footer" id="cartFooter" style="display: none;">
             <div class="cart-total">
-                <span>Total</span>
+                <span data-key="cart_total">Total</span>
                 <span id="cartTotal">0 FCFA</span>
             </div>
-            <button class="checkout-btn" id="checkoutBtn">Passer la commande</button>
+            <button class="checkout-btn" id="checkoutBtn" data-key="cart_checkout">Passer la commande</button>
         </div>
     </div>
 
     <script>
         // PRODUITS
         const products = [
-            { id: 1, name: "Vin de palme traditionnel", name_en: "Traditional Palm Wine", category: "vin", price: 4000, oldPrice: null, desc: "Vin de palme produit localement par les étudiants", desc_en: "Locally produced palm wine", stock: 30, delivery: "48h", img: "vin1.jpg", badge: null },
-            { id: 2, name: "Plantain Macaroni", name_en: "Plantain Macaroni Chips", category: "alimentaire", price: 1500, oldPrice: 2000, desc: "Chips de plantain maison en forme de macaroni", desc_en: "Homemade plantain chips in macaroni shape", stock: 75, delivery: "24h", img: "pl.jpg", badge: "best" },
-            { id: 3, name: "Tisane anti-hémorroïdes", name_en: "Anti-hemorrhoid Herbal Tea", category: "sante", price: 3500, oldPrice: 5000, desc: "Tisane naturelle contre les hémorroïdes", desc_en: "Natural herbal tea against hemorrhoids", stock: 40, delivery: "24h", img: "th.jpg", badge: "promo" },
-            { id: 4, name: "Détergent Multi-usage", name_en: "Multi-purpose Detergent", category: "menage", price: 2500, oldPrice: null, desc: "Détergent puissant pour tout type de surface", desc_en: "Powerful detergent for all surfaces", stock: 100, delivery: "24h", img: "as.jpg", badge: null },
-            { id: 5, name: "Détergent Extra Fort", name_en: "Extra Strong Detergent", category: "menage", price: 3500, oldPrice: 4500, desc: "Détergent plus puissant pour saletés incrustées", desc_en: "Stronger detergent for tough stains", stock: 85, delivery: "24h", img: "as1.jpg", badge: "promo" },
-            { id: 6, name: "Pommade Cicatrisante", name_en: "Healing Ointment", category: "sante", price: 3000, oldPrice: 4000, desc: "Pommade pour cicatrices et réparation cutanée", desc_en: "Ointment for scars and skin repair", stock: 50, delivery: "24h", img: "po.jpg", badge: null },
-            { id: 7, name: "Baume Mentholé", name_en: "Menthol Balm", category: "sante", price: 2500, oldPrice: 3500, desc: "Baume pour douleurs musculaires et effet menthol", desc_en: "Balm for muscle pain with menthol effect", stock: 60, delivery: "24h", img: "po1.jpg", badge: "best" },
-            { id: 8, name: "Lave-vitres", name_en: "Glass Cleaner", category: "menage", price: 2000, oldPrice: null, desc: "Nettoyant spécial pour vitres et surfaces brillantes", desc_en: "Special cleaner for windows and shiny surfaces", stock: 90, delivery: "24h", img: "li.jpg", badge: null },
-            { id: 9, name: "Lait Corps à la Papaye", name_en: "Papaya Body Lotion", category: "beaute", price: 4000, oldPrice: 5500, desc: "Lait hydratant corps à la papaye", desc_en: "Papaya moisturizing body lotion", stock: 45, delivery: "24h", img: "lait.jpg", badge: "promo" },
-            { id: 10, name: "Shampoing Naturel", name_en: "Natural Shampoo", category: "beaute", price: 3500, oldPrice: null, desc: "Shampoing doux aux ingrédients naturels", desc_en: "Gentle shampoo with natural ingredients", stock: 55, delivery: "24h", img: "sh.jpg", badge: null },
-            { id: 11, name: "Fongicide", name_en: "Fungicide", category: "sante", price: 4500, oldPrice: 6000, desc: "Traitement antifongique efficace", desc_en: "Effective antifungal treatment", stock: 35, delivery: "48h", img: "fo.jpg", badge: "promo" }
+            { id: 1, name: "Vin de palme traditionnel", name_en: "Traditional Palm Wine", category: "vin", price: 4000, oldPrice: null, desc: "Vin de palme produit localement par les étudiants", desc_en: "Locally produced palm wine", stock: 30, delivery: "48h", delivery_en: "48h", img: "vin1.jpg", badge: null, badge_en: null },
+            { id: 2, name: "Plantain Macaroni", name_en: "Plantain Macaroni Chips", category: "alimentaire", price: 1500, oldPrice: 2000, desc: "Chips de plantain maison en forme de macaroni", desc_en: "Homemade plantain chips in macaroni shape", stock: 75, delivery: "24h", delivery_en: "24h", img: "pl.jpg", badge: "best", badge_en: "BEST SELLER" },
+            { id: 3, name: "Tisane anti-hémorroïdes", name_en: "Anti-hemorrhoid Herbal Tea", category: "sante", price: 3500, oldPrice: 5000, desc: "Tisane naturelle contre les hémorroïdes", desc_en: "Natural herbal tea against hemorrhoids", stock: 40, delivery: "24h", delivery_en: "24h", img: "th.jpg", badge: "promo", badge_en: "PROMO" },
+            { id: 4, name: "Détergent Multi-usage", name_en: "Multi-purpose Detergent", category: "menage", price: 2500, oldPrice: null, desc: "Détergent puissant pour tout type de surface", desc_en: "Powerful detergent for all surfaces", stock: 100, delivery: "24h", delivery_en: "24h", img: "as.jpg", badge: null, badge_en: null },
+            { id: 5, name: "Détergent Extra Fort", name_en: "Extra Strong Detergent", category: "menage", price: 3500, oldPrice: 4500, desc: "Détergent plus puissant pour saletés incrustées", desc_en: "Stronger detergent for tough stains", stock: 85, delivery: "24h", delivery_en: "24h", img: "as1.jpg", badge: "promo", badge_en: "PROMO" },
+            { id: 6, name: "Pommade Cicatrisante", name_en: "Healing Ointment", category: "sante", price: 3000, oldPrice: 4000, desc: "Pommade pour cicatrices et réparation cutanée", desc_en: "Ointment for scars and skin repair", stock: 50, delivery: "24h", delivery_en: "24h", img: "po.jpg", badge: null, badge_en: null },
+            { id: 7, name: "Baume Mentholé", name_en: "Menthol Balm", category: "sante", price: 2500, oldPrice: 3500, desc: "Baume pour douleurs musculaires et effet menthol", desc_en: "Balm for muscle pain with menthol effect", stock: 60, delivery: "24h", delivery_en: "24h", img: "po1.jpg", badge: "best", badge_en: "BEST SELLER" },
+            { id: 8, name: "Lave-vitres", name_en: "Glass Cleaner", category: "menage", price: 2000, oldPrice: null, desc: "Nettoyant spécial pour vitres et surfaces brillantes", desc_en: "Special cleaner for windows and shiny surfaces", stock: 90, delivery: "24h", delivery_en: "24h", img: "li.jpg", badge: null, badge_en: null },
+            { id: 9, name: "Lait Corps à la Papaye", name_en: "Papaya Body Lotion", category: "beaute", price: 4000, oldPrice: 5500, desc: "Lait hydratant corps à la papaye", desc_en: "Papaya moisturizing body lotion", stock: 45, delivery: "24h", delivery_en: "24h", img: "lait.jpg", badge: "promo", badge_en: "PROMO" },
+            { id: 10, name: "Shampoing Naturel", name_en: "Natural Shampoo", category: "beaute", price: 3500, oldPrice: null, desc: "Shampoing doux aux ingrédients naturels", desc_en: "Gentle shampoo with natural ingredients", stock: 55, delivery: "24h", delivery_en: "24h", img: "sh.jpg", badge: null, badge_en: null },
+            { id: 11, name: "Fongicide", name_en: "Fungicide", category: "sante", price: 4500, oldPrice: 6000, desc: "Traitement antifongique efficace", desc_en: "Effective antifungal treatment", stock: 35, delivery: "48h", delivery_en: "48h", img: "fo.jpg", badge: "promo", badge_en: "PROMO" }
         ];
 
         // VIDÉOS
         const videos = [
-            { src: "ii.mp4", title: "Fabrication des polos personnalisés", desc: "Découvrez comment nos étudiants créent des polos uniques pour chaque département." },
-            { src: "aa.mp4", title: "Gravure et personnalisation TCO", desc: "Le processus de gravure des polos du département TCO." },
-            { src: "a1.mp4", title: "Qualité du tissu", desc: "La texture, le coton, la qualité du tissu des polos IUT." },
-            { src: "oo.mp4", title: "Jus naturels faits à l'IUT", desc: "Découvrez nos jus naturels sans conservateur." }
+            { src: "ii.mp4", title: "Fabrication des polos personnalisés", title_en: "Custom Polo Shirt Manufacturing", desc: "Découvrez comment nos étudiants créent des polos uniques pour chaque département.", desc_en: "Discover how our students create unique polo shirts for each department." },
+            { src: "aa.mp4", title: "Gravure et personnalisation TCO", title_en: "TCO Engraving and Customization", desc: "Le processus de gravure des polos du département TCO.", desc_en: "The engraving process for TCO department polo shirts." },
+            { src: "a1.mp4", title: "Qualité du tissu", title_en: "Fabric Quality", desc: "La texture, le coton, la qualité du tissu des polos IUT.", desc_en: "The texture, cotton, and fabric quality of IUT polo shirts." },
+            { src: "oo.mp4", title: "Jus naturels faits à l'IUT", title_en: "Natural Juices Made at IUT", desc: "Découvrez nos jus naturels sans conservateur.", desc_en: "Discover our natural preservative-free juices." }
         ];
 
         let currentLang = 'fr';
@@ -1084,7 +1084,7 @@
             cartCountSpan.textContent = totalItems;
             
             if (cart.length === 0) {
-                cartItemsDiv.innerHTML = '<div class="empty-cart">Votre panier est vide</div>';
+                cartItemsDiv.innerHTML = `<div class="empty-cart" data-key="cart_empty">${currentLang === 'fr' ? 'Votre panier est vide' : 'Your cart is empty'}</div>`;
                 cartFooter.style.display = 'none';
                 return;
             }
@@ -1107,7 +1107,7 @@
                                 <button onclick="updateQuantity(${item.id}, 1)">+</button>
                             </div>
                             <div class="remove-item" onclick="removeFromCart(${item.id})">
-                                <i class="fas fa-trash-alt"></i> Supprimer
+                                <i class="fas fa-trash-alt"></i> ${currentLang === 'fr' ? 'Supprimer' : 'Remove'}
                             </div>
                         </div>
                     </div>
@@ -1142,41 +1142,55 @@
             const filtered = category === "all" ? products : products.filter(p => p.category === category);
             const grid = document.getElementById("productsGrid");
             
-            grid.innerHTML = filtered.map(p => `
-                <div>
-                    <div class="product-frame">
-                        ${p.badge ? `<div class="product-badge badge-${p.badge === 'promo' ? 'promo' : p.badge === 'best' ? 'best' : 'soldout'}">${p.badge === 'promo' ? 'PROMO' : p.badge === 'best' ? 'BEST SELLER' : 'RUPTURE'}</div>` : ''}
-                        <img src="${p.img}" alt="${p.name}" class="product-img" onerror="this.src='https://placehold.co/400x280/f0f0f0/999?text=Produit+IUT'">
-                    </div>
-                    <div class="product-text-below">
-                        <div class="product-category">${getCategoryName(p.category)}</div>
-                        <div class="product-title">${currentLang === 'fr' ? p.name : p.name_en}</div>
-                        <div class="product-desc">${currentLang === 'fr' ? p.desc : p.desc_en}</div>
-                        <div class="product-price">
-                            <span class="current">${p.price.toLocaleString()} FCFA</span>
-                            ${p.oldPrice ? `<span class="old">${p.oldPrice.toLocaleString()} FCFA</span>` : ''}
+            grid.innerHTML = filtered.map(p => {
+                const badgeText = currentLang === 'fr' ? 
+                    (p.badge === 'promo' ? 'PROMO' : p.badge === 'best' ? 'BEST SELLER' : '') : 
+                    (p.badge_en === 'PROMO' ? 'PROMO' : p.badge_en === 'BEST SELLER' ? 'BEST SELLER' : '');
+                const badgeClass = p.badge === 'promo' ? 'promo' : p.badge === 'best' ? 'best' : '';
+                
+                return `
+                    <div>
+                        <div class="product-frame">
+                            ${badgeText ? `<div class="product-badge badge-${badgeClass}">${badgeText}</div>` : ''}
+                            <img src="${p.img}" alt="${currentLang === 'fr' ? p.name : p.name_en}" class="product-img" onerror="this.src='https://placehold.co/400x280/f0f0f0/999?text=Produit+IUT'">
                         </div>
-                        <div class="product-stock ${p.stock > 0 ? 'stock-in' : 'stock-out'}">
-                            ${p.stock > 0 ? `Stock: ${p.stock} disponibles` : 'Rupture de stock'}
+                        <div class="product-text-below">
+                            <div class="product-category">${getCategoryName(p.category)}</div>
+                            <div class="product-title">${currentLang === 'fr' ? p.name : p.name_en}</div>
+                            <div class="product-desc">${currentLang === 'fr' ? p.desc : p.desc_en}</div>
+                            <div class="product-price">
+                                <span class="current">${p.price.toLocaleString()} FCFA</span>
+                                ${p.oldPrice ? `<span class="old">${p.oldPrice.toLocaleString()} FCFA</span>` : ''}
+                            </div>
+                            <div class="product-stock ${p.stock > 0 ? 'stock-in' : 'stock-out'}">
+                                ${p.stock > 0 ? (currentLang === 'fr' ? `Stock: ${p.stock} disponibles` : `Stock: ${p.stock} available`) : (currentLang === 'fr' ? 'Rupture de stock' : 'Out of stock')}
+                            </div>
+                            <div class="product-delivery">${currentLang === 'fr' ? 'Livraison' : 'Delivery'}: ${currentLang === 'fr' ? p.delivery : p.delivery_en}</div>
+                            <button class="btn-add ${p.stock === 0 ? 'disabled' : ''}" ${p.stock === 0 ? 'disabled' : ''} onclick="addToCart(${p.id}, '${(currentLang === 'fr' ? p.name : p.name_en).replace(/'/g, "\\'")}', ${p.price}, '${p.img}')">
+                                ${currentLang === 'fr' ? 'Ajouter au panier' : 'Add to cart'} <i class="fas fa-shopping-cart"></i>
+                            </button>
                         </div>
-                        <div class="product-delivery">Livraison: ${p.delivery}</div>
-                        <button class="btn-add ${p.stock === 0 ? 'disabled' : ''}" ${p.stock === 0 ? 'disabled' : ''} onclick="addToCart(${p.id}, '${currentLang === 'fr' ? p.name.replace(/'/g, "\\'") : p.name_en.replace(/'/g, "\\'")}', ${p.price}, '${p.img}')">
-                            Ajouter au panier <i class="fas fa-shopping-cart"></i>
-                        </button>
                     </div>
-                </div>
-            `).join("");
+                `;
+            }).join("");
         }
 
         function getCategoryName(cat) {
-            const categories = {
+            const categoriesFr = {
                 vin: "Vins & Boissons",
                 alimentaire: "Alimentaire",
                 sante: "Santé & Bien-être",
                 beaute: "Beauté & Soins",
                 menage: "Entretien & Ménage"
             };
-            return categories[cat] || cat;
+            const categoriesEn = {
+                vin: "Wines & Drinks",
+                alimentaire: "Food",
+                sante: "Health & Wellness",
+                beaute: "Beauty & Care",
+                menage: "Household & Cleaning"
+            };
+            return currentLang === 'fr' ? categoriesFr[cat] : categoriesEn[cat];
         }
 
         function renderVideos() {
@@ -1187,14 +1201,14 @@
                         <video src="${video.src}" autoplay loop muted playsinline></video>
                     </div>
                     <div class="video-text-below">
-                        <h4>${video.title}</h4>
-                        <p>${video.desc}</p>
+                        <h4>${currentLang === 'fr' ? video.title : video.title_en}</h4>
+                        <p>${currentLang === 'fr' ? video.desc : video.desc_en}</p>
                     </div>
                 </div>
             `).join("");
         }
 
-        // Traduction
+        // Traduction complète
         const translations = {
             fr: {
                 hero_title: "La boutique officielle de l'IUT de Douala",
@@ -1202,23 +1216,47 @@
                 products_title: "Nos produits",
                 products_subtitle: "Sélectionnez une catégorie pour filtrer les produits",
                 gallery_title: "Galerie Exposition",
+                footer_brand: "Boutik Ecole",
                 footer_desc: "La boutique officielle des étudiants de l'IUT de Douala. Achetez local, soutenez le talent.",
-                copyright: "© 2026 Boutik Ecole – IUT de Douala. Tous droits réservés.",
                 footer_links_title: "Liens",
                 footer_contact_title: "Contact",
+                footer_address: "IUT de Douala, Cameroun",
+                copyright: "© 2026 Boutik Ecole – IUT de Douala. Tous droits réservés.",
+                cart_title: "Mon Panier",
+                cart_empty: "Votre panier est vide",
+                cart_total: "Total",
+                cart_checkout: "Passer la commande",
+                cat_all: "Toutes les catégories",
+                cat_wine: "Vins & Boissons",
+                cat_food: "Alimentaire",
+                cat_health: "Santé & Bien-être",
+                cat_beauty: "Beauté & Soins",
+                cat_household: "Entretien & Ménage",
                 mobile_lang_btn: "🌐 Changer langue",
                 nav_home: "Accueil", nav_shop: "Boutique", nav_sponsor: "Sponsor", nav_projects: "Projets", nav_contact: "Contact"
             },
             en: {
-                hero_title: "The official store of IUT Douala",
+                hero_title: "The Official Store of IUT Douala",
                 hero_text: "Discover products made by our students: beauty products, snacks, wines, ointments and more. Support local know-how!",
-                products_title: "Our products",
+                products_title: "Our Products",
                 products_subtitle: "Select a category to filter products",
                 gallery_title: "Exhibition Gallery",
+                footer_brand: "Boutik Ecole",
                 footer_desc: "The official shop of IUT Douala students. Buy local, support talent.",
-                copyright: "© 2026 Boutik Ecole – IUT of Douala. All rights reserved.",
                 footer_links_title: "Links",
                 footer_contact_title: "Contact",
+                footer_address: "IUT of Douala, Cameroon",
+                copyright: "© 2026 Boutik Ecole – IUT of Douala. All rights reserved.",
+                cart_title: "My Cart",
+                cart_empty: "Your cart is empty",
+                cart_total: "Total",
+                cart_checkout: "Checkout",
+                cat_all: "All categories",
+                cat_wine: "Wines & Drinks",
+                cat_food: "Food",
+                cat_health: "Health & Wellness",
+                cat_beauty: "Beauty & Care",
+                cat_household: "Household & Cleaning",
                 mobile_lang_btn: "🌐 Change language",
                 nav_home: "Home", nav_shop: "Shop", nav_sponsor: "Sponsor", nav_projects: "Projects", nav_contact: "Contact"
             }
@@ -1228,25 +1266,50 @@
             currentLang = lang;
             const t = translations[lang];
             
+            // Hero
             document.querySelector('[data-key="hero_title"]').textContent = t.hero_title;
             document.querySelector('[data-key="hero_text"]').textContent = t.hero_text;
+            
+            // Category header
             document.querySelector('[data-key="products_title"]').textContent = t.products_title;
             document.querySelector('[data-key="products_subtitle"]').textContent = t.products_subtitle;
+            
+            // Gallery
             document.querySelector('[data-key="gallery_title"]').textContent = t.gallery_title;
+            
+            // Footer
+            document.querySelector('[data-key="footer_brand"]').textContent = t.footer_brand;
             document.querySelector('[data-key="footer_desc"]').textContent = t.footer_desc;
+            document.querySelector('[data-key="footer_links_title"]').textContent = t.footer_links_title;
+            document.querySelector('[data-key="footer_contact_title"]').textContent = t.footer_contact_title;
+            const footerAddress = document.querySelector('[data-key="footer_address"]');
+            if(footerAddress) footerAddress.textContent = t.footer_address;
             document.querySelector('[data-key="copyright"]').textContent = t.copyright;
             
-            // Footer titles
-            const footerTitles = document.querySelectorAll('.footer-col h3');
-            if(footerTitles[1]) footerTitles[1].textContent = t.footer_links_title;
-            if(footerTitles[2]) footerTitles[2].textContent = t.footer_contact_title;
+            // Cart
+            const cartTitle = document.querySelector('[data-key="cart_title"]');
+            if(cartTitle) cartTitle.innerHTML = `<i class="fas fa-shopping-cart"></i> ${t.cart_title}`;
+            const cartTotalLabel = document.querySelector('[data-key="cart_total"]');
+            if(cartTotalLabel) cartTotalLabel.textContent = t.cart_total;
+            const checkoutBtn = document.querySelector('[data-key="cart_checkout"]');
+            if(checkoutBtn) checkoutBtn.textContent = t.cart_checkout;
             
-            // Desktop navigation links
+            // Category select options
+            const selectOptions = document.querySelectorAll('#categorySelect option');
+            const catKeys = ['all', 'vin', 'alimentaire', 'sante', 'beaute', 'menage'];
+            const catTransKeys = ['cat_all', 'cat_wine', 'cat_food', 'cat_health', 'cat_beauty', 'cat_household'];
+            selectOptions.forEach((option, idx) => {
+                if(idx < catTransKeys.length) {
+                    option.textContent = t[catTransKeys[idx]];
+                }
+            });
+            
+            // Desktop navigation
             const desktopLinks = document.querySelectorAll('.nav-desktop ul li a');
             const linkKeys = ['home', 'shop', 'sponsor', 'projects', 'contact'];
             desktopLinks.forEach((link, idx) => { if(idx < linkKeys.length) link.textContent = t[`nav_${linkKeys[idx]}`]; });
             
-            // Mobile navigation links
+            // Mobile navigation
             const mobileLinks = document.querySelectorAll('.mobile-menu-overlay ul li a');
             mobileLinks.forEach((link, idx) => { if(idx < linkKeys.length) link.textContent = t[`nav_${linkKeys[idx]}`]; });
             
@@ -1254,10 +1317,14 @@
             const footerLinks = document.querySelectorAll('.footer-col ul li a');
             footerLinks.forEach((link, idx) => { if(link && idx < linkKeys.length) link.textContent = t[`nav_${linkKeys[idx]}`]; });
             
+            // Mobile globe button
             const mobileGlobeBtn = document.getElementById('mobileGlobeBtn');
             if(mobileGlobeBtn) mobileGlobeBtn.innerHTML = t.mobile_lang_btn;
             
+            // Rerender products and videos
             renderProducts(document.getElementById("categorySelect").value);
+            renderVideos();
+            updateCartUI();
         }
 
         function toggleLang() { 
@@ -1276,7 +1343,10 @@
         
         document.getElementById("checkoutBtn").addEventListener("click", () => {
             if (cart.length > 0) {
-                alert(`Commande passée ! Total: ${cart.reduce((sum, item) => sum + (item.price * item.quantity), 0).toLocaleString()} FCFA`);
+                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                alert(currentLang === 'fr' 
+                    ? `Commande passée ! Total: ${total.toLocaleString()} FCFA` 
+                    : `Order placed! Total: ${total.toLocaleString()} FCFA`);
                 cart = [];
                 saveCart();
                 updateCartUI();
