@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Boutik Ecole | Projets étudiants – IUT de Douala</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: #f7f3ee;
+            min-height: 100vh;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* HEADER */
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 20px 0;
+            background: transparent;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: #FFD166;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            font-family: 'Outfit', sans-serif;
+            color: white;
+            letter-spacing: -0.5px;
+        }
+
+        /* Navigation desktop */
+        .nav-desktop ul {
+            display: flex;
+            list-style: none;
+            gap: 28px;
+            flex-wrap: wrap;
+        }
+
+        .nav-desktop a {
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: 0.2s;
+        }
+
+        .nav-desktop a:hover {
+            color: #FFD166;
+        }
+
+        .language-globe {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .language-globe:hover {
+            transform: scale(1.1);
+            color: #FFD166;
+        }
+
+        /* MENU HAMBURGER (visible uniquement sur mobile) */
+        .menu-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 200;
+            transition: 0.2s;
+        }
+        .menu-toggle:hover {
+            color: #FFD166;
+        }
+
+        /* Menu mobile overlay */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 320px;
+            height: 100vh;
+            background: white;
+            z-index: 150;
+            transition: right 0.3s ease-in-out;
+            padding: 30px 24px;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        .mobile-menu-overlay.open {
+            right: 0;
+        }
+        .mobile-menu-overlay .close-menu {
+            background: transparent;
+            border: none;
+            font-size: 1.8rem;
+            color: #1e2a2e;
+            align-self: flex-end;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        .mobile-menu-overlay ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+        .mobile-menu-overlay ul li a {
+            text-decoration: none;
+            color: #1e2a2e;
+            font-size: 1.3rem;
+            font-weight: 600;
+            font-family: 'Outfit', sans-serif;
+            transition: 0.2s;
+            display: block;
+            padding: 6px 0;
+        }
+        .mobile-menu-overlay ul li a:hover {
+            color: #FFD166;
+        }
+        .mobile-globe {
+            margin-top: 20px;
+            background: #f0f0f0;
+            border: none;
+            padding: 12px;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: #1e2a2e;
+            transition: 0.2s;
+        }
+        .mobile-globe:hover {
+            background: #FFD166;
+            color: #1e2a2e;
+        }
+        .overlay-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 140;
+            display: none;
+        }
+        .overlay-backdrop.show {
+            display: block;
+        }
+
+        /* HERO BANNER */
+        .hero-banner {
+            position: relative;
+            background-image: url('ss.jpg');
+            background-size: cover;
+            background-position: center;
+            min-height: 500px;
+            width: 100%;
+        }
+
+        .hero-overlay {
+            background: rgba(0, 0, 0, 0.5);
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px 40px 60px;
+        }
+
+        .hero-overlay h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .hero-overlay p {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.95);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* SECTION CHIFFRES CLÉS */
+        .stats-section {
+            text-align: center;
+            margin: 60px 0 40px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #ff0000;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #1e2a2e;
+            font-weight: 500;
+        }
+
+        /* FILTRES SIMPLIFIÉS */
+        .filters-section {
+            margin: 30px 0 40px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .filter-btn {
+            padding: 12px 35px;
+            border: none;
+            border-radius: 50px;
+            background: white;
+            color: #1e2a2e;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: #ff0000;
+            color: white;
+        }
+
+        /* SECTION PROJETS */
+        .projects-section {
+            margin: 30px 0 50px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 35px;
+        }
+
+        .project-card {
+            background: transparent;
+            overflow: hidden;
+        }
+
+        .project-media {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            display: block;
+            border-radius: 24px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        .project-media:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .project-text {
+            margin-top: 15px;
+            padding: 0 5px;
+        }
+
+        .project-status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .status-completed {
+            background: #4caf50;
+            color: white;
+        }
+
+        .status-progress {
+            background: #ff9800;
+            color: white;
+        }
+
+        .project-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #1e2a2e;
+            margin-bottom: 8px;
+        }
+
+        .project-desc {
+            font-size: 0.85rem;
+            color: #5a6e7a;
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+
+        .project-dept {
+            font-size: 0.7rem;
+            color: #ff0000;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .btn-project {
+            padding: 8px 20px;
+            background: #1e2a2e;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-project:hover {
+            background: #ff0000;
+        }
+
+        /* BANNER APPEL À PROJETS */
+        .call-project-full {
+            width: 100%;
+            margin: 50px 0 0;
+        }
+
+        .call-project-banner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 450px;
+        }
+
+        .call-image {
+            background-image: url('ss.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .call-content {
+            background: linear-gradient(135deg, #1a2a4a 0%, #2c1a4a 100%);
+            padding: 60px 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .call-content h3 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #FFD166;
+            margin-bottom: 20px;
+        }
+
+        .call-content p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.95);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .btn-call {
+            display: inline-block;
+            padding: 14px 35px;
+            background: #ff0000;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            width: fit-content;
+        }
+
+        .btn-call:hover {
+            background: #cc0000;
+            transform: translateY(-2px);
+        }
+
+        /* FOOTER */
+        footer {
+            background: transparent;
+            margin-top: 40px;
+            padding: 40px 0 30px;
+            border-top: 1px solid rgba(255,209,102,0.3);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 50px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            color: #FFD166;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .footer-col p, .footer-col li {
+            color: rgba(0,0,0,0.7);
+            margin-bottom: 12px;
+            list-style: none;
+            font-size: 0.9rem;
+        }
+
+        .footer-col a {
+            color: rgba(0,0,0,0.7);
+            text-decoration: none;
+        }
+
+        .footer-col a:hover {
+            color: #FFD166;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 14px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            width: 38px;
+            height: 38px;
+            background: rgba(0,0,0,0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1e2a2e;
+        }
+
+        .social-icons a:hover {
+            background: #FFD166;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            font-size: 0.8rem;
+            color: rgba(0,0,0,0.5);
+        }
+
+        @media (max-width: 1024px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+            .call-project-banner {
+                grid-template-columns: 1fr;
+            }
+            .call-image {
+                min-height: 250px;
+            }
+            .call-content {
+                padding: 40px 30px;
+            }
+            .call-content h3 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* RESPONSIVE MOBILE avec hamburger */
+        @media (max-width: 780px) {
+            .nav-desktop {
+                display: none;
+            }
+            .menu-toggle {
+                display: flex;
+            }
+            .header-content {
+                justify-content: space-between;
+                align-items: center;
+                gap: 15px;
+            }
+            .language-globe {
+                display: none;
+            }
+            .hero-banner {
+                min-height: 400px;
+            }
+            .hero-overlay {
+                min-height: 400px;
+                padding: 80px 20px 40px;
+            }
+            .hero-overlay h2 {
+                font-size: 1.8rem;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .filters-section {
+                flex-direction: column;
+                align-items: center;
+            }
+            .filter-btn {
+                width: 80%;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            .call-content h3 {
+                font-size: 1.5rem;
+            }
+            .call-content p {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+            .hero-overlay h2 {
+                font-size: 1.5rem;
+            }
+            .hero-overlay p {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="content">
+        <header>
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h1>Boutik Ecole</h1>
+                    </div>
+                    <!-- Navigation desktop -->
+                    <nav class="nav-desktop">
+                        <ul>
+                            <li><a href="index.html" data-nav-key="home">Accueil</a></li>
+                            <li><a href="boutique.html" data-nav-key="shop">Boutique</a></li>
+                            <li><a href="sponsor.html" data-nav-key="sponsor">Sponsor</a></li>
+                            <li><a href="projets.html" data-nav-key="projects">Projets</a></li>
+                            <li><a href="contact.html" data-nav-key="contact">Contact</a></li>
+                        </ul>
+                    </nav>
+                    <button class="menu-toggle" id="menuToggleBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+                    <button class="language-globe" id="globeBtn">🌐</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Overlay mobile -->
+        <div class="overlay-backdrop" id="menuBackdrop"></div>
+        <div class="mobile-menu-overlay" id="mobileMenu">
+            <button class="close-menu" id="closeMenuBtn"><i class="fas fa-times"></i></button>
+            <ul>
+                <li><a href="index.html" data-mobile-nav-key="home">Accueil</a></li>
+                <li><a href="boutique.html" data-mobile-nav-key="shop">Boutique</a></li>
+                <li><a href="sponsor.html" data-mobile-nav-key="sponsor">Sponsor</a></li>
+                <li><a href="projets.html" data-mobile-nav-key="projects">Projets</a></li>
+                <li><a href="contact.html" data-mobile-nav-key="contact">Contact</a></li>
+            </ul>
+            <button class="mobile-globe" id="mobileGlobeBtn">🌐 Changer langue</button>
+        </div>
+
+        <!-- HERO BANNER -->
+        <div class="hero-banner">
+            <div class="hero-overlay">
+                <h2 data-key="hero_title">Projets étudiants</h2>
+                <p data-key="hero_text">Découvrez les innovations et créations des étudiants de l'IUT de Douala. Des projets ambitieux qui façonnent l'avenir.</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <!-- CHIFFRES CLÉS DYNAMIQUES -->
+            <div class="stats-section">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number" id="stat1">0</div>
+                        <div class="stat-label" data-key="stat_projects">Projets réalisés</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="stat2">0</div>
+                        <div class="stat-label" data-key="stat_students">Étudiants impliqués</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="stat3">0</div>
+                        <div class="stat-label" data-key="stat_partners">Partenaires</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="stat4">0</div>
+                        <div class="stat-label" data-key="stat_awards">Prix remportés</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FILTRES SIMPLIFIÉS -->
+            <div class="filters-section">
+                <button class="filter-btn active" data-filter="completed">Projets réalisés</button>
+                <button class="filter-btn" data-filter="progress">Projets en cours</button>
+            </div>
+
+            <!-- PROJETS -->
+            <div class="projects-section">
+                <div class="projects-grid" id="projectsGrid"></div>
+            </div>
+        </div>
+
+        <!-- BANNER APPEL À PROJETS -->
+        <div class="call-project-full">
+            <div class="call-project-banner">
+                <div class="call-image"></div>
+                <div class="call-content">
+                    <h3 data-key="call_title">Vous avez un projet ?</h3>
+                    <p data-key="call_text">Porté par une idée innovante ? L'IUT de Douala vous accompagne dans la réalisation de vos projets étudiants.</p>
+                    <button class="btn-call" onclick="openProjectForm()" data-key="call_btn">Soumettre mon projet <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-col">
+                        <h3>Boutik Ecole</h3>
+                        <p data-key="footer_desc">La boutique officielle des étudiants de l'IUT de Douala. Achetez local, soutenez le talent.</p>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-col">
+                        <h3 data-footer-title="links">Liens</h3>
+                        <ul>
+                            <li><a href="index.html" data-footer-link="home">Accueil</a></li>
+                            <li><a href="boutique.html" data-footer-link="shop">Boutique</a></li>
+                            <li><a href="sponsor.html" data-footer-link="sponsor">Sponsor</a></li>
+                            <li><a href="projets.html" data-footer-link="projects">Projets</a></li>
+                            <li><a href="contact.html" data-footer-link="contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h3 data-footer-title="contact">Contact</h3>
+                        <ul>
+                            <li><i class="fas fa-map-marker-alt"></i> IUT de Douala, Cameroun</li>
+                            <li><i class="fas fa-envelope"></i> contact@boutikecole.com</li>
+                            <li><i class="fas fa-phone-alt"></i> +237 6 55 88 99 00</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="copyright">
+                    <p data-key="copyright">© 2026 Boutik Ecole – IUT de Douala. Tous droits réservés.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Données des projets avec traduction
+        const projectsData = {
+            fr: {
+                completed: [
+                    { id: 1, title: "Thé Instantané", desc: "Thé instantané aux plantes pour un moment de détente à tout moment.", img: "the instant.jpeg", dept: "Infusion" },
+                    { id: 2, title: "Miel Pur", desc: "Miel 100% naturel récolté localement, aux vertus médicinales.", img: "miel.jpeg", dept: "Apiculture" },
+                    { id: 3, title: "Oseille", desc: "Poudre d'oseille pour ses bienfaits digestifs et nutritionnels.", img: "oseille.jpeg", dept: "Plantes médicinales" },
+                    { id: 4, title: "Henna Naturel", desc: "Henna pur pour coloration et soin des cheveux.", img: "henne.jpeg", dept: "Cosmétique" },
+                    { id: 5, title: "Prise de Masse", desc: "Complément naturel pour la prise de masse musculaire.", img: "masse.jpeg", dept: "Nutrition sportive" },
+                    { id: 6, title: "Blancheur Dentaire", desc: "Poudre blanchissante naturelle pour des dents plus blanches.", img: "blancheur.jpeg", dept: "Hygiène dentaire" }
+                ],
+                progress: [
+                    { id: 7, title: "Vins & Jus Naturels", desc: "Découvrez notre gamme de vins artisanaux et jus naturels élaborés par nos étudiants en agroalimentaire.", video: "oo.mp4", dept: "Œnologie & Jus" },
+                    { id: 8, title: "Gamme de Toilette & Soins", desc: "Lait hydratant, crème visage et produits de toilette naturels fabriqués par nos étudiants en cosmétique.", video: "op.mp4", dept: "Cosmétique naturelle" },
+                    { id: 9, title: "Sachets d'Oseille", desc: "Conditionnement artisanal de l'oseille en sachets pour ses bienfaits digestifs et nutritionnels.", video: "oq.mp4", dept: "Plantes médicinales" }
+                ]
+            },
+            en: {
+                completed: [
+                    { id: 1, title: "Instant Tea", desc: "Instant plant-based tea for a relaxing moment at any time.", img: "the instant.jpeg", dept: "Infusion" },
+                    { id: 2, title: "Pure Honey", desc: "100% natural honey harvested locally, with medicinal benefits.", img: "miel.jpeg", dept: "Beekeeping" },
+                    { id: 3, title: "Sorrel", desc: "Sorrel powder for its digestive and nutritional benefits.", img: "oseille.jpeg", dept: "Medicinal Plants" },
+                    { id: 4, title: "Natural Henna", desc: "Pure henna for hair coloring and care.", img: "henne.jpeg", dept: "Cosmetics" },
+                    { id: 5, title: "Weight Gain", desc: "Natural supplement for muscle mass gain.", img: "masse.jpeg", dept: "Sports Nutrition" },
+                    { id: 6, title: "Teeth Whitening", desc: "Natural whitening powder for brighter teeth.", img: "blancheur.jpeg", dept: "Dental Hygiene" }
+                ],
+                progress: [
+                    { id: 7, title: "Wines & Natural Juices", desc: "Discover our range of artisanal wines and natural juices made by our students in food processing.", video: "oo.mp4", dept: "Oenology & Juices" },
+                    { id: 8, title: "Toiletry & Skincare Line", desc: "Hydrating lotion, face cream and natural toiletry products made by our cosmetics students.", video: "op.mp4", dept: "Natural Cosmetics" },
+                    { id: 9, title: "Sorrel Sachets", desc: "Artisanal packaging of sorrel in sachets for its digestive and nutritional benefits.", video: "oq.mp4", dept: "Medicinal Plants" }
+                ]
+            }
+        };
+
+        let currentLang = 'fr';
+        let currentFilter = 'completed';
+
+        function animateNumbers() {
+            const targets = [24, 45, 12, 8];
+            const elements = ['stat1', 'stat2', 'stat3', 'stat4'];
+            elements.forEach((id, index) => {
+                let current = 0;
+                const target = targets[index];
+                const element = document.getElementById(id);
+                const increment = target / 50;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        element.textContent = Math.floor(target) + '+';
+                        clearInterval(timer);
+                    } else {
+                        element.textContent = Math.floor(current) + '+';
+                    }
+                }, 35);
+            });
+        }
+
+        function renderProjects() {
+            const projects = projectsData[currentLang][currentFilter];
+            const grid = document.getElementById("projectsGrid");
+            const statusText = currentLang === 'fr' ? (currentFilter === 'completed' ? '✓ Réalisé' : '🔄 En cours') : (currentFilter === 'completed' ? '✓ Completed' : '🔄 In progress');
+            
+            grid.innerHTML = projects.map(p => `
+                <div>
+                    ${p.img ? 
+                        `<img src="${p.img}" alt="${p.title}" class="project-media" onerror="this.src='https://placehold.co/400x260/f0f0f0/999?text=Projet+IUT'">` : 
+                        `<video src="${p.video}" class="project-media" autoplay loop muted playsinline></video>`
+                    }
+                    <div class="project-text">
+                        <span class="project-status ${currentFilter === 'completed' ? 'status-completed' : 'status-progress'}">${statusText}</span>
+                        <div class="project-title">${p.title}</div>
+                        <div class="project-desc">${p.desc}</div>
+                        <div class="project-dept"><i class="fas fa-building"></i> ${p.dept}</div>
+                        <button class="btn-project" onclick="showProjectDetails('${p.title}')">${currentLang === 'fr' ? 'En savoir plus' : 'Learn more'} <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            `).join("");
+        }
+
+        // Fonctions sans alert
+        function showProjectDetails(title) {
+            console.log(`Projet: ${title}`);
+        }
+
+        function openProjectForm() {
+            console.log("Formulaire de soumission de projet");
+        }
+
+        // Filtres
+        document.querySelectorAll(".filter-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+                currentFilter = btn.dataset.filter;
+                renderProjects();
+            });
+        });
+
+        // Menu hamburger
+        const menuToggle = document.getElementById('menuToggleBtn');
+        const mobileMenuDiv = document.getElementById('mobileMenu');
+        const menuBackdrop = document.getElementById('menuBackdrop');
+        const closeMenuBtn = document.getElementById('closeMenuBtn');
+        function openMenu() { mobileMenuDiv.classList.add('open'); menuBackdrop.classList.add('show'); document.body.style.overflow = 'hidden'; }
+        function closeMenu() { mobileMenuDiv.classList.remove('open'); menuBackdrop.classList.remove('show'); document.body.style.overflow = ''; }
+        if(menuToggle) menuToggle.addEventListener('click', openMenu);
+        if(closeMenuBtn) closeMenuBtn.addEventListener('click', closeMenu);
+        if(menuBackdrop) menuBackdrop.addEventListener('click', closeMenu);
+
+        // Traduction complète
+        const globeBtn = document.getElementById('globeBtn');
+        const mobileGlobeBtn = document.getElementById('mobileGlobeBtn');
+        
+        const translations = {
+            fr: {
+                hero_title: "Projets étudiants",
+                hero_text: "Découvrez les innovations et créations des étudiants de l'IUT de Douala. Des projets ambitieux qui façonnent l'avenir.",
+                stat_projects: "Projets réalisés",
+                stat_students: "Étudiants impliqués",
+                stat_partners: "Partenaires",
+                stat_awards: "Prix remportés",
+                call_title: "Vous avez un projet ?",
+                call_text: "Porté par une idée innovante ? L'IUT de Douala vous accompagne dans la réalisation de vos projets étudiants.",
+                call_btn: "Soumettre mon projet",
+                footer_desc: "La boutique officielle des étudiants de l'IUT de Douala. Achetez local, soutenez le talent.",
+                copyright: "© 2026 Boutik Ecole – IUT de Douala. Tous droits réservés.",
+                footer_links_title: "Liens",
+                footer_contact_title: "Contact",
+                mobile_lang_btn: "🌐 Changer langue",
+                filter_completed: "Projets réalisés",
+                filter_progress: "Projets en cours",
+                nav_home: "Accueil", nav_shop: "Boutique", nav_sponsor: "Sponsor", nav_projects: "Projets", nav_contact: "Contact"
+            },
+            en: {
+                hero_title: "Student Projects",
+                hero_text: "Discover the innovations and creations of IUT Douala students. Ambitious projects shaping the future.",
+                stat_projects: "Projects completed",
+                stat_students: "Students involved",
+                stat_partners: "Partners",
+                stat_awards: "Awards won",
+                call_title: "Have a project?",
+                call_text: "Driven by an innovative idea? IUT Douala supports you in carrying out your student projects.",
+                call_btn: "Submit my project",
+                footer_desc: "The official shop of IUT Douala students. Buy local, support talent.",
+                copyright: "© 2026 Boutik Ecole – IUT of Douala. All rights reserved.",
+                footer_links_title: "Links",
+                footer_contact_title: "Contact",
+                mobile_lang_btn: "🌐 Change language",
+                filter_completed: "Completed projects",
+                filter_progress: "Projects in progress",
+                nav_home: "Home", nav_shop: "Shop", nav_sponsor: "Sponsor", nav_projects: "Projects", nav_contact: "Contact"
+            }
+        };
+
+        function updateLanguage(lang) {
+            currentLang = lang;
+            const t = translations[lang];
+            
+            document.querySelector('[data-key="hero_title"]').textContent = t.hero_title;
+            document.querySelector('[data-key="hero_text"]').textContent = t.hero_text;
+            document.querySelector('[data-key="stat_projects"]').textContent = t.stat_projects;
+            document.querySelector('[data-key="stat_students"]').textContent = t.stat_students;
+            document.querySelector('[data-key="stat_partners"]').textContent = t.stat_partners;
+            document.querySelector('[data-key="stat_awards"]').textContent = t.stat_awards;
+            document.querySelector('[data-key="call_title"]').textContent = t.call_title;
+            document.querySelector('[data-key="call_text"]').textContent = t.call_text;
+            document.querySelector('[data-key="call_btn"]').innerHTML = `${t.call_btn} <i class="fas fa-arrow-right"></i>`;
+            document.querySelector('[data-key="footer_desc"]').textContent = t.footer_desc;
+            document.querySelector('[data-key="copyright"]').textContent = t.copyright;
+            
+            // Traduction des boutons de filtre
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            if(filterBtns[0]) filterBtns[0].textContent = t.filter_completed;
+            if(filterBtns[1]) filterBtns[1].textContent = t.filter_progress;
+            
+            // Footer titles
+            const footerTitles = document.querySelectorAll('.footer-col h3');
+            if(footerTitles[1]) footerTitles[1].textContent = t.footer_links_title;
+            if(footerTitles[2]) footerTitles[2].textContent = t.footer_contact_title;
+            
+            // Footer links
+            const footerLinks = document.querySelectorAll('.footer-col ul li a');
+            const linkKeys = ['home', 'shop', 'sponsor', 'projects', 'contact'];
+            footerLinks.forEach((link, idx) => { if(idx < linkKeys.length) link.textContent = t[`nav_${linkKeys[idx]}`]; });
+            
+            // Desktop navigation
+            const desktopLinks = document.querySelectorAll('.nav-desktop ul li a');
+            desktopLinks.forEach((link, idx) => { if(idx < linkKeys.length) link.textContent = t[`nav_${linkKeys[idx]}`]; });
+            
+            // Mobile menu navigation
+            const mobileLinks = document.querySelectorAll('.mobile-menu-overlay ul li a');
+            mobileLinks.forEach((link, idx) => { if(idx < linkKeys.length) link.textContent = t[`nav_${linkKeys[idx]}`]; });
+            
+            // Mobile globe button
+            if(mobileGlobeBtn) mobileGlobeBtn.innerHTML = t.mobile_lang_btn;
+            
+            // Re-render projects with new language
+            renderProjects();
+        }
+
+        function toggleLang() { 
+            const newLang = currentLang === 'fr' ? 'en' : 'fr'; 
+            updateLanguage(newLang); 
+        }
+        
+        globeBtn.addEventListener("click", toggleLang);
+        if(mobileGlobeBtn) mobileGlobeBtn.addEventListener("click", () => { toggleLang(); closeMenu(); });
+
+        animateNumbers();
+        renderProjects();
+        updateLanguage('fr');
+    </script>
+</body>
+</html>

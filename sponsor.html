@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Boutik Ecole | Sponsor – IUT de Douala</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: #f7f3ee;
+            min-height: 100vh;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* HEADER - TRANSPARENT */
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 20px 0;
+            background: transparent;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: #FFD166;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            font-family: 'Outfit', sans-serif;
+            color: white;
+            letter-spacing: -0.5px;
+        }
+
+        /* Navigation desktop */
+        .nav-desktop ul {
+            display: flex;
+            list-style: none;
+            gap: 28px;
+            flex-wrap: wrap;
+        }
+
+        .nav-desktop a {
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: 0.2s;
+        }
+
+        .nav-desktop a:hover {
+            color: #FFD166;
+        }
+
+        .language-globe {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .language-globe:hover {
+            transform: scale(1.1);
+            color: #FFD166;
+        }
+
+        /* MENU HAMBURGER (visible uniquement sur mobile) */
+        .menu-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 200;
+            transition: 0.2s;
+        }
+        .menu-toggle:hover {
+            color: #FFD166;
+        }
+
+        /* Menu mobile overlay */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 320px;
+            height: 100vh;
+            background: white;
+            z-index: 150;
+            transition: right 0.3s ease-in-out;
+            padding: 30px 24px;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        .mobile-menu-overlay.open {
+            right: 0;
+        }
+        .mobile-menu-overlay .close-menu {
+            background: transparent;
+            border: none;
+            font-size: 1.8rem;
+            color: #1e2a2e;
+            align-self: flex-end;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        .mobile-menu-overlay ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+        .mobile-menu-overlay ul li a {
+            text-decoration: none;
+            color: #1e2a2e;
+            font-size: 1.3rem;
+            font-weight: 600;
+            font-family: 'Outfit', sans-serif;
+            transition: 0.2s;
+            display: block;
+            padding: 6px 0;
+        }
+        .mobile-menu-overlay ul li a:hover {
+            color: #FFD166;
+        }
+        .mobile-globe {
+            margin-top: 20px;
+            background: #f0f0f0;
+            border: none;
+            padding: 12px;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: #1e2a2e;
+            transition: 0.2s;
+        }
+        .mobile-globe:hover {
+            background: #FFD166;
+            color: #1e2a2e;
+        }
+        .overlay-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 140;
+            display: none;
+        }
+        .overlay-backdrop.show {
+            display: block;
+        }
+
+        /* HERO BANNER AVEC IMAGE bb.jpg */
+        .hero-banner {
+            position: relative;
+            background-image: url('bb.jpg');
+            background-size: cover;
+            background-position: center;
+            min-height: 550px;
+            width: 100%;
+        }
+
+        .hero-overlay {
+            background: rgba(0, 0, 0, 0.5);
+            min-height: 550px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px 40px 60px;
+        }
+
+        .hero-overlay h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero-overlay p {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.95);
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            background: #FFD166;
+            color: #1e2a2e;
+            padding: 14px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .hero-cta:hover {
+            background: #e6bc4a;
+            transform: translateY(-3px);
+        }
+
+        /* SECTION POURQUOI SPONSORISER */
+        .why-sponsor {
+            text-align: center;
+            margin: 60px 0 40px;
+        }
+
+        .why-sponsor h3 {
+            font-size: 2rem;
+            color: #1e2a2e;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .why-sponsor > p {
+            color: #5a6e7a;
+            max-width: 700px;
+            margin: 0 auto 50px;
+            font-size: 1rem;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .benefit-item {
+            text-align: center;
+        }
+
+        .benefit-item i {
+            font-size: 2.8rem;
+            color: #ff0000;
+            margin-bottom: 20px;
+        }
+
+        .benefit-item h4 {
+            font-size: 1.2rem;
+            color: #1e2a2e;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .benefit-item p {
+            color: #5a6e7a;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* SECTION IMAGES - PLEINE LARGEUR SANS CONTAINER */
+        .images-gallery-full {
+            width: 100%;
+            margin: 60px 0;
+        }
+
+        .images-gallery-full h3 {
+            font-size: 2rem;
+            color: #1e2a2e;
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 800;
+        }
+
+        .gallery-grid-full {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        .gallery-img-full {
+            width: 25%;
+            position: relative;
+            overflow: hidden;
+            height: 400px;
+        }
+
+        .gallery-img-full img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.3s;
+        }
+
+        .gallery-img-full:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-overlay-full {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 25px;
+            text-align: center;
+        }
+
+        .gallery-overlay-full span {
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        /* SECTION NIVEAUX DE SPONSORING */
+        .levels-section {
+            margin: 60px 0;
+        }
+
+        .levels-section h3 {
+            font-size: 2rem;
+            color: #1e2a2e;
+            text-align: center;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .levels-section > p {
+            text-align: center;
+            color: #5a6e7a;
+            margin-bottom: 40px;
+        }
+
+        .levels-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            align-items: stretch;
+        }
+
+        .level-card {
+            background: white;
+            border-radius: 24px;
+            padding: 30px 25px;
+            text-align: center;
+            transition: 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-top: 4px solid #ff0000;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .level-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .level-card h4 {
+            font-size: 1.6rem;
+            color: #1e2a2e;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .level-price {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #ff0000;
+            margin-bottom: 20px;
+        }
+
+        .level-price span {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: #5a6e7a;
+        }
+
+        .level-features {
+            list-style: none;
+            margin: 25px 0;
+            text-align: left;
+            flex: 1;
+        }
+
+        .level-features li {
+            padding: 8px 0;
+            color: #5a6e7a;
+            font-size: 0.85rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .level-features li i {
+            color: #ff0000;
+            font-size: 0.8rem;
+            width: 20px;
+        }
+
+        .level-btn {
+            background: #ff0000;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        .level-btn:hover {
+            background: #cc0000;
+            transform: translateY(-2px);
+        }
+
+        /* SECTION POURQUOI NOUS CHOISIR + FORMULAIRE */
+        .sponsor-info-section {
+            margin: 60px 0 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .sponsor-info-content h3 {
+            font-size: 1.8rem;
+            color: #1e2a2e;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .sponsor-info-content p {
+            color: #5a6e7a;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .sponsor-contact-details {
+            margin-top: 30px;
+        }
+
+        .sponsor-contact-details p {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .sponsor-contact-details i {
+            color: #ff0000;
+            width: 25px;
+            font-size: 1.1rem;
+        }
+
+        .sponsor-contact-details a {
+            color: #1e2a2e;
+            text-decoration: none;
+        }
+
+        .sponsor-contact-details a:hover {
+            color: #ff0000;
+        }
+
+        /* FORMULAIRE SPONSOR */
+        .sponsor-form {
+            background: white;
+            border-radius: 24px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .sponsor-form h3 {
+            font-size: 1.5rem;
+            color: #1e2a2e;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .form-group label {
+            color: #1e2a2e;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+            background: #fafbfc;
+            color: #1e2a2e;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #ff0000;
+        }
+
+        .btn-submit {
+            background: #ff0000;
+            color: white;
+            padding: 14px 32px;
+            border-radius: 40px;
+            border: none;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            width: fit-content;
+        }
+
+        .btn-submit:hover {
+            background: #cc0000;
+            transform: translateY(-2px);
+        }
+
+        /* FAQ SPONSOR */
+        .faq-sponsor-section {
+            margin: 50px 0 60px;
+        }
+
+        .faq-sponsor-section h3 {
+            font-size: 1.8rem;
+            color: #1e2a2e;
+            text-align: center;
+            margin-bottom: 35px;
+            font-weight: 800;
+        }
+
+        .faq-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 20px;
+            padding: 0 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .faq-question {
+            padding: 18px 0;
+            font-weight: 700;
+            color: #1e2a2e;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question i {
+            color: #ff0000;
+            transition: 0.2s;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            color: #5a6e7a;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding-bottom: 18px;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        /* FOOTER */
+        footer {
+            background: transparent;
+            margin-top: 40px;
+            padding: 40px 0 30px;
+            border-top: 1px solid rgba(255,209,102,0.3);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 50px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            color: #FFD166;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .footer-col p, .footer-col li {
+            color: rgba(0,0,0,0.7);
+            margin-bottom: 12px;
+            list-style: none;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .footer-col a {
+            color: rgba(0,0,0,0.7);
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: #FFD166;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 14px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            width: 38px;
+            height: 38px;
+            background: rgba(0,0,0,0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+            color: #1e2a2e;
+            font-size: 1rem;
+        }
+
+        .social-icons a:hover {
+            background: #FFD166;
+            color: #1e2a2e;
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            font-size: 0.8rem;
+            color: rgba(0,0,0,0.5);
+        }
+
+        /* RESPONSIVE MOBILE-FIRST (sans altérer le design) */
+        @media (max-width: 1024px) {
+            .benefits-grid, .levels-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .gallery-img-full {
+                width: 50%;
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 780px) {
+            /* Cacher la navigation desktop, afficher hamburger */
+            .nav-desktop {
+                display: none;
+            }
+            .menu-toggle {
+                display: flex;
+            }
+            .header-content {
+                justify-content: space-between;
+                align-items: center;
+                gap: 15px;
+            }
+            .language-globe {
+                display: none;
+            }
+            .hero-banner {
+                min-height: 450px;
+            }
+            .hero-overlay {
+                min-height: 450px;
+                padding: 80px 20px 40px;
+            }
+            .hero-overlay h2 {
+                font-size: 1.8rem;
+            }
+            .benefits-grid, .levels-grid {
+                grid-template-columns: 1fr;
+            }
+            .sponsor-info-section {
+                grid-template-columns: 1fr;
+            }
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+            .gallery-img-full {
+                width: 100%;
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+            .hero-overlay h2 {
+                font-size: 1.5rem;
+            }
+            .hero-overlay p {
+                font-size: 0.9rem;
+            }
+            .why-sponsor h3, .images-gallery-full h3, .levels-section h3, .faq-sponsor-section h3 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="content">
+        <!-- HEADER -->
+        <header>
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h1>Boutik Ecole</h1>
+                    </div>
+                    <!-- Navigation desktop -->
+                    <nav class="nav-desktop">
+                        <ul>
+                            <li><a href="index.html" data-nav-key="home">Accueil</a></li>
+                            <li><a href="boutique.html" data-nav-key="shop">Boutique</a></li>
+                            <li><a href="sponsor.html" data-nav-key="sponsor">Sponsor</a></li>
+                            <li><a href="projets.html" data-nav-key="projects">Projets</a></li>
+                            <li><a href="contact.html" data-nav-key="contact">Contact</a></li>
+                        </ul>
+                    </nav>
+                    <button class="menu-toggle" id="menuToggleBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+                    <button class="language-globe" id="globeBtn">🌐</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Overlay mobile -->
+        <div class="overlay-backdrop" id="menuBackdrop"></div>
+        <div class="mobile-menu-overlay" id="mobileMenu">
+            <button class="close-menu" id="closeMenuBtn"><i class="fas fa-times"></i></button>
+            <ul>
+                <li><a href="index.html" data-mobile-nav-key="home">Accueil</a></li>
+                <li><a href="boutique.html" data-mobile-nav-key="shop">Boutique</a></li>
+                <li><a href="sponsor.html" data-mobile-nav-key="sponsor">Sponsor</a></li>
+                <li><a href="projets.html" data-mobile-nav-key="projects">Projets</a></li>
+                <li><a href="contact.html" data-mobile-nav-key="contact">Contact</a></li>
+            </ul>
+            <button class="mobile-globe" id="mobileGlobeBtn">🌐 Changer langue</button>
+        </div>
+
+        <!-- HERO BANNER AVEC bb.jpg -->
+        <div class="hero-banner">
+            <div class="hero-overlay">
+                <h2>Devenez Sponsor de l'IUT de Douala</h2>
+                <p>Investissez dans l'avenir, soutenez l'excellence académique et bénéficiez d'une visibilité exceptionnelle auprès de milliers d'étudiants.</p>
+                <a href="#sponsorForm" class="hero-cta">Devenir sponsor <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <div class="container">
+            <!-- POURQUOI SPONSORISER -->
+            <div class="why-sponsor">
+                <h3>Pourquoi sponsoriser l'IUT de Douala ?</h3>
+                <p>En devenant partenaire de notre institution, vous participez activement au développement de la jeunesse camerounaise.</p>
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <i class="fas fa-users"></i>
+                        <h4>Visibilité maximale</h4>
+                        <p>Exposez votre marque à plus de 5 000 étudiants, enseignants et professionnels chaque année.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-handshake"></i>
+                        <h4>Réseautage</h4>
+                        <p>Connectez-vous avec des entreprises locales et internationales lors de nos événements.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-chart-line"></i>
+                        <h4>Impact durable</h4>
+                        <p>Contribuez à la formation des futures élites du Cameroun et d'Afrique centrale.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-trophy"></i>
+                        <h4>Label d'excellence</h4>
+                        <p>Associez votre marque à une institution reconnue pour la qualité de sa formation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION IMAGES - PLEINE LARGEUR -->
+        <div class="images-gallery-full">
+            <h3>Nos réalisations en images</h3>
+            <div class="gallery-grid-full">
+                <div class="gallery-img-full"><img src="s1.jpg" alt="Événement Boutik Ecole"><div class="gallery-overlay-full"><span>Forum des métiers</span></div></div>
+                <div class="gallery-img-full"><img src="s2.jpg" alt="Événement Boutik Ecole"><div class="gallery-overlay-full"><span>Journée portes ouvertes</span></div></div>
+                <div class="gallery-img-full"><img src="s3.jpg" alt="Événement Boutik Ecole"><div class="gallery-overlay-full"><span>Remise des diplômes</span></div></div>
+                <div class="gallery-img-full"><img src="s4.jpg" alt="Événement Boutik Ecole"><div class="gallery-overlay-full"><span>Salon de l'étudiant</span></div></div>
+            </div>
+        </div>
+
+        <div class="container">
+            <!-- NIVEAUX DE SPONSORING -->
+            <div class="levels-section">
+                <h3>Nos formules de sponsoring</h3>
+                <p>Choisissez le pack qui correspond le mieux à vos objectifs et à votre budget.</p>
+                <div class="levels-grid">
+                    <div class="level-card"><h4>Bronze</h4><div class="level-price">500 000 FCFA <span>/ an</span></div><ul class="level-features"><li><i class="fas fa-check"></i> Logo sur notre site web</li><li><i class="fas fa-check"></i> Mention dans nos newsletters</li><li><i class="fas fa-check"></i> Invitation aux événements majeurs</li></ul><button class="level-btn" onclick="selectSponsorLevel('Bronze - 500 000 FCFA')">Choisir cette formule</button></div>
+                    <div class="level-card"><h4>Argent</h4><div class="level-price">1 000 000 FCFA <span>/ an</span></div><ul class="level-features"><li><i class="fas fa-check"></i> Tous les avantages Bronze</li><li><i class="fas fa-check"></i> Logo sur nos supports physiques</li><li><i class="fas fa-check"></i> Stand lors de nos journées portes ouvertes</li><li><i class="fas fa-check"></i> Publication sur nos réseaux sociaux</li></ul><button class="level-btn" onclick="selectSponsorLevel('Argent - 1 000 000 FCFA')">Choisir cette formule</button></div>
+                    <div class="level-card"><h4>Or</h4><div class="level-price">2 500 000 FCFA <span>/ an</span></div><ul class="level-features"><li><i class="fas fa-check"></i> Tous les avantages Argent</li><li><i class="fas fa-check"></i> Partenaire officiel d'un événement</li><li><i class="fas fa-check"></i> Présence dans nos campagnes publicitaires</li><li><i class="fas fa-check"></i> Accès privilégié aux étudiants talents</li></ul><button class="level-btn" onclick="selectSponsorLevel('Or - 2 500 000 FCFA')">Choisir cette formule</button></div>
+                    <div class="level-card"><h4>Platinium</h4><div class="level-price">5 000 000 FCFA <span>/ an</span></div><ul class="level-features"><li><i class="fas fa-check"></i> Tous les avantages Or</li><li><i class="fas fa-check"></i> Nomination d'un espace/un bâtiment</li><li><i class="fas fa-check"></i> Conférence de presse personnalisée</li><li><i class="fas fa-check"></i> Partenariat stratégique exclusif</li></ul><button class="level-btn" onclick="selectSponsorLevel('Platinium - 5 000 000 FCFA')">Choisir cette formule</button></div>
+                </div>
+            </div>
+
+            <!-- POURQUOI NOUS CHOISIR + FORMULAIRE -->
+            <div class="sponsor-info-section" id="sponsorForm">
+                <div class="sponsor-info-content">
+                    <h3>Pourquoi nous choisir ?</h3>
+                    <p>L'IUT de Douala est une référence en matière de formation technique et professionnelle au Cameroun. En devenant sponsor, vous bénéficiez d'une exposition unique auprès d'un public jeune, dynamique et connecté.</p>
+                    <p>Nos événements annuels rassemblent plus de 3 000 participants, offrant une visibilité exceptionnelle à nos partenaires.</p>
+                    <div class="sponsor-contact-details">
+                        <p><i class="fas fa-envelope"></i> <a href="mailto:sponsor@boutikecole.com">sponsor@boutikecole.com</a></p>
+                        <p><i class="fas fa-phone-alt"></i> <a href="tel:+237655889900">+237 6 55 88 99 00</a></p>
+                        <p><i class="fas fa-clock"></i> Lundi - Vendredi : 9h - 17h</p>
+                    </div>
+                </div>
+
+                <div class="sponsor-form">
+                    <h3>Demande de sponsoring</h3>
+                    <form id="sponsorFormSubmit">
+                        <div class="form-grid">
+                            <div class="form-group"><label>Nom de l'entreprise *</label><input type="text" id="companyName" placeholder="Votre entreprise" required></div>
+                            <div class="form-group"><label>Votre nom complet *</label><input type="text" id="contactName" placeholder="Nom du contact" required></div>
+                            <div class="form-group"><label>Email professionnel *</label><input type="email" id="emailSponsor" placeholder="contact@entreprise.com" required></div>
+                            <div class="form-group"><label>Téléphone *</label><input type="tel" id="phoneSponsor" placeholder="+237 6 XX XX XX XX" required></div>
+                            <div class="form-group"><label>Formule souhaitée *</label><select id="sponsorLevel"><option value="">-- Sélectionnez une formule --</option><option>Bronze - 500 000 FCFA/an</option><option>Argent - 1 000 000 FCFA/an</option><option>Or - 2 500 000 FCFA/an</option><option>Platinium - 5 000 000 FCFA/an</option><option>Formule personnalisée</option></select></div>
+                            <div class="form-group"><label>Site web</label><input type="url" id="website" placeholder="https://www.entreprise.com"></div>
+                            <div class="form-group full-width"><label>Message / Demande spécifique</label><textarea id="messageSponsor" rows="4" placeholder="Décrivez vos attentes, vos objectifs ou toute information complémentaire..."></textarea></div>
+                            <div class="form-group full-width"><button type="submit" class="btn-submit">Envoyer la demande <i class="fas fa-arrow-right"></i></button></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- FAQ SPONSOR -->
+            <div class="faq-sponsor-section">
+                <h3>Questions fréquentes sur le sponsoring</h3>
+                <div class="faq-grid">
+                    <div class="faq-item"><div class="faq-question">Quels sont les délais pour devenir sponsor ? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Le processus est rapide : après réception de votre demande, nous vous contactons sous 48h pour finaliser le partenariat en moins d'une semaine.</div></div>
+                    <div class="faq-item"><div class="faq-question">Puis-je personnaliser ma formule de sponsoring ? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Absolument ! Nous proposons des formules sur mesure adaptées à vos objectifs et à votre budget. Contactez-nous directement pour en discuter.</div></div>
+                    <div class="faq-item"><div class="faq-question">Quelle est la durée d'engagement ? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">L'engagement est annuel, renouvelable. Vous pouvez résilier à tout moment après la période d'engagement.</div></div>
+                    <div class="faq-item"><div class="faq-question">Comment mesurez-vous la visibilité des sponsors ? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Nous fournissons un rapport trimestriel détaillant les impressions, les retombées médiatiques et la participation aux événements.</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-col"><h3>Boutik Ecole</h3><p>La boutique officielle des étudiants de l'IUT de Douala. Achetez local, soutenez le talent.</p><div class="social-icons"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="#"><i class="fab fa-twitter"></i></a></div></div>
+                    <div class="footer-col"><h3 data-footer-title="links">Liens</h3><ul><li><a href="index.html" data-footer-link="home">Accueil</a></li><li><a href="boutique.html" data-footer-link="shop">Boutique</a></li><li><a href="sponsor.html" data-footer-link="sponsor">Sponsor</a></li><li><a href="projets.html" data-footer-link="projects">Projets</a></li><li><a href="contact.html" data-footer-link="contact">Contact</a></li></ul></div>
+                    <div class="footer-col"><h3 data-footer-title="contact">Contact</h3><ul><li><i class="fas fa-map-marker-alt"></i> IUT de Douala, Cameroun</li><li><i class="fas fa-envelope"></i> contact@boutikecole.com</li><li><i class="fas fa-phone-alt"></i> +237 6 55 88 99 00</li></ul></div>
+                </div>
+                <div class="copyright"><p>© 2026 Boutik Ecole – IUT de Douala. Tous droits réservés.</p></div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // MENU HAMBURGER MOBILE
+        const menuToggle = document.getElementById('menuToggleBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuBackdrop = document.getElementById('menuBackdrop');
+        const closeMenuBtn = document.getElementById('closeMenuBtn');
+        function openMenu() { mobileMenu.classList.add('open'); menuBackdrop.classList.add('show'); document.body.style.overflow = 'hidden'; }
+        function closeMenu() { mobileMenu.classList.remove('open'); menuBackdrop.classList.remove('show'); document.body.style.overflow = ''; }
+        if(menuToggle) menuToggle.addEventListener('click', openMenu);
+        if(closeMenuBtn) closeMenuBtn.addEventListener('click', closeMenu);
+        if(menuBackdrop) menuBackdrop.addEventListener('click', closeMenu);
+
+        // FAQ accordéon
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => { question.parentElement.classList.toggle('active'); });
+        });
+
+        function selectSponsorLevel(level) {
+            const levelSelect = document.getElementById('sponsorLevel');
+            if (levelSelect) {
+                for(let i = 0; i < levelSelect.options.length; i++) {
+                    if(levelSelect.options[i].text === level) { levelSelect.selectedIndex = i; break; }
+                }
+            }
+            document.querySelector('.sponsor-form').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        document.getElementById('sponsorFormSubmit')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const company = document.getElementById('companyName')?.value || '';
+            const contact = document.getElementById('contactName')?.value || '';
+            alert(`Merci ${contact} de ${company} ! Votre demande de sponsoring a bien été envoyée. Notre équipe vous recontactera dans les 48 heures.`);
+            this.reset();
+        });
+
+        // TRADUCTION COMPLÈTE (menu desktop, mobile, footer)
+        const globeBtn = document.getElementById('globeBtn');
+        const mobileGlobeBtn = document.getElementById('mobileGlobeBtn');
+        let lang = 'fr';
+
+        const translations = {
+            fr: {
+                hero_title: "Devenez Sponsor de l'IUT de Douala",
+                hero_text: "Investissez dans l'avenir, soutenez l'excellence académique et bénéficiez d'une visibilité exceptionnelle auprès de milliers d'étudiants.",
+                hero_cta: "Devenir sponsor",
+                why_title: "Pourquoi sponsoriser l'IUT de Douala ?",
+                why_text: "En devenant partenaire de notre institution, vous participez activement au développement de la jeunesse camerounaise.",
+                gallery_title: "Nos réalisations en images",
+                levels_title: "Nos formules de sponsoring",
+                levels_text: "Choisissez le pack qui correspond le mieux à vos objectifs et à votre budget.",
+                info_title: "Pourquoi nous choisir ?",
+                info_text1: "L'IUT de Douala est une référence en matière de formation technique et professionnelle au Cameroun. En devenant sponsor, vous bénéficiez d'une exposition unique auprès d'un public jeune, dynamique et connecté.",
+                info_text2: "Nos événements annuels rassemblent plus de 3 000 participants, offrant une visibilité exceptionnelle à nos partenaires.",
+                form_title: "Demande de sponsoring",
+                company_name: "Nom de l'entreprise *",
+                contact_name: "Votre nom complet *",
+                email: "Email professionnel *",
+                phone: "Téléphone *",
+                level: "Formule souhaitée *",
+                website: "Site web",
+                message: "Message / Demande spécifique",
+                btn: "Envoyer la demande",
+                faq_title: "Questions fréquentes sur le sponsoring",
+                footer_desc: "La boutique officielle des étudiants de l'IUT de Douala. Achetez local, soutenez le talent.",
+                copyright: "© 2026 Boutik Ecole – IUT de Douala. Tous droits réservés.",
+                footer_links_title: "Liens",
+                footer_contact_title: "Contact",
+                mobile_lang_btn: "🌐 Changer langue",
+                nav_home: "Accueil", nav_shop: "Boutique", nav_sponsor: "Sponsor", nav_projects: "Projets", nav_contact: "Contact"
+            },
+            en: {
+                hero_title: "Become a Sponsor of IUT Douala",
+                hero_text: "Invest in the future, support academic excellence and benefit from exceptional visibility among thousands of students.",
+                hero_cta: "Become a sponsor",
+                why_title: "Why sponsor IUT Douala?",
+                why_text: "By becoming a partner of our institution, you actively participate in the development of Cameroonian youth.",
+                gallery_title: "Our achievements in pictures",
+                levels_title: "Our sponsorship packages",
+                levels_text: "Choose the package that best suits your objectives and budget.",
+                info_title: "Why choose us?",
+                info_text1: "IUT Douala is a benchmark for technical and professional training in Cameroon. By becoming a sponsor, you benefit from unique exposure to a young, dynamic and connected audience.",
+                info_text2: "Our annual events bring together more than 3,000 participants, offering exceptional visibility to our partners.",
+                form_title: "Sponsorship request",
+                company_name: "Company name *",
+                contact_name: "Your full name *",
+                email: "Professional email *",
+                phone: "Phone *",
+                level: "Desired package *",
+                website: "Website",
+                message: "Message / Specific request",
+                btn: "Send request",
+                faq_title: "Frequently asked questions about sponsorship",
+                footer_desc: "The official shop of IUT Douala students. Buy local, support talent.",
+                copyright: "© 2026 Boutik Ecole – IUT of Douala. All rights reserved.",
+                footer_links_title: "Links",
+                footer_contact_title: "Contact",
+                mobile_lang_btn: "🌐 Change language",
+                nav_home: "Home", nav_shop: "Shop", nav_sponsor: "Sponsor", nav_projects: "Projects", nav_contact: "Contact"
+            }
+        };
+
+        function updateLanguage(langCode) {
+            const t = translations[langCode];
+            document.querySelector('.hero-overlay h2').innerHTML = t.hero_title;
+            document.querySelector('.hero-overlay p').innerHTML = t.hero_text;
+            document.querySelector('.hero-cta').innerHTML = `${t.hero_cta} <i class="fas fa-arrow-right"></i>`;
+            document.querySelector('.why-sponsor h3').innerHTML = t.why_title;
+            document.querySelector('.why-sponsor > p').innerHTML = t.why_text;
+            document.querySelector('.images-gallery-full h3').innerHTML = t.gallery_title;
+            document.querySelector('.levels-section h3').innerHTML = t.levels_title;
+            document.querySelector('.levels-section > p').innerHTML = t.levels_text;
+            document.querySelector('.sponsor-info-content h3').innerHTML = t.info_title;
+            const infoPs = document.querySelectorAll('.sponsor-info-content p');
+            if(infoPs[0]) infoPs[0].innerHTML = t.info_text1;
+            if(infoPs[1]) infoPs[1].innerHTML = t.info_text2;
+            document.querySelector('.sponsor-form h3').innerHTML = t.form_title;
+            document.querySelector('.faq-sponsor-section h3').innerHTML = t.faq_title;
+            
+            const formLabels = document.querySelectorAll('.sponsor-form .form-group label');
+            if(formLabels[0]) formLabels[0].innerHTML = t.company_name;
+            if(formLabels[1]) formLabels[1].innerHTML = t.contact_name;
+            if(formLabels[2]) formLabels[2].innerHTML = t.email;
+            if(formLabels[3]) formLabels[3].innerHTML = t.phone;
+            if(formLabels[4]) formLabels[4].innerHTML = t.level;
+            if(formLabels[5]) formLabels[5].innerHTML = t.website;
+            if(formLabels[6]) formLabels[6].innerHTML = t.message;
+            document.querySelector('.btn-submit').innerHTML = `${t.btn} <i class="fas fa-arrow-right"></i>`;
+            
+            document.querySelector('.footer-col:first-child p').innerHTML = t.footer_desc;
+            document.querySelector('.copyright p').innerHTML = t.copyright;
+            const footerTitles = document.querySelectorAll('.footer-col h3');
+            if(footerTitles[1]) footerTitles[1].innerHTML = t.footer_links_title;
+            if(footerTitles[2]) footerTitles[2].innerHTML = t.footer_contact_title;
+            
+            const footerLinks = document.querySelectorAll('.footer-col ul li a');
+            const linkKeys = ['home', 'shop', 'sponsor', 'projects', 'contact'];
+            footerLinks.forEach((link, idx) => { if(idx < linkKeys.length) link.innerHTML = t[`nav_${linkKeys[idx]}`]; });
+            
+            const desktopLinks = document.querySelectorAll('.nav-desktop ul li a');
+            desktopLinks.forEach((link, idx) => { if(idx < linkKeys.length) link.innerHTML = t[`nav_${linkKeys[idx]}`]; });
+            
+            const mobileLinks = document.querySelectorAll('.mobile-menu-overlay ul li a');
+            mobileLinks.forEach((link, idx) => { if(idx < linkKeys.length) link.innerHTML = t[`nav_${linkKeys[idx]}`]; });
+            
+            const mobileBtn = document.getElementById('mobileGlobeBtn');
+            if(mobileBtn) mobileBtn.innerHTML = t.mobile_lang_btn;
+        }
+
+        function toggleLang() { lang = (lang === 'fr') ? 'en' : 'fr'; updateLanguage(lang); }
+        globeBtn.addEventListener('click', toggleLang);
+        if(mobileGlobeBtn) mobileGlobeBtn.addEventListener('click', () => { toggleLang(); closeMenu(); });
+        
+        updateLanguage('fr');
+    </script>
+</body>
+</html>

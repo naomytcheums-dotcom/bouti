@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Boutik Ecole | IUT de Douala – La boutique étudiante</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ===== VOTRE DESIGN ORIGINAL (PC & tablettes) ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #000;
+            min-height: 100vh;
+        }
+
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            filter: brightness(0.55) contrast(1.1);
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* HEADER original (desktop) */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 24px 0;
+            background: transparent;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: #FFD166;
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            font-family: 'Outfit', sans-serif;
+            color: white;
+            letter-spacing: -0.5px;
+        }
+
+        /* Navigation desktop */
+        .nav-desktop ul {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+
+        .nav-desktop a {
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: 0.2s;
+        }
+
+        .nav-desktop a:hover {
+            color: #FFD166;
+        }
+
+        .language-globe {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.6rem;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .language-globe:hover {
+            transform: scale(1.1);
+            color: #FFD166;
+        }
+
+        /* MENU HAMBURGER (visible uniquement sur mobile) */
+        .menu-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 200;
+            transition: 0.2s;
+        }
+        .menu-toggle:hover {
+            color: #FFD166;
+        }
+
+        /* Menu mobile overlay */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 320px;
+            height: 100vh;
+            background: white;
+            z-index: 150;
+            transition: right 0.3s ease-in-out;
+            padding: 30px 24px;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        .mobile-menu-overlay.open {
+            right: 0;
+        }
+        .mobile-menu-overlay .close-menu {
+            background: transparent;
+            border: none;
+            font-size: 1.8rem;
+            color: #1e2a2e;
+            align-self: flex-end;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        .mobile-menu-overlay ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+        .mobile-menu-overlay ul li a {
+            text-decoration: none;
+            color: #1e2a2e;
+            font-size: 1.3rem;
+            font-weight: 600;
+            font-family: 'Outfit', sans-serif;
+            transition: 0.2s;
+            display: block;
+            padding: 6px 0;
+        }
+        .mobile-menu-overlay ul li a:hover {
+            color: #FFD166;
+        }
+        .mobile-globe {
+            margin-top: 20px;
+            background: #f0f0f0;
+            border: none;
+            padding: 12px;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: #1e2a2e;
+            transition: 0.2s;
+        }
+        .mobile-globe:hover {
+            background: #FFD166;
+            color: #1e2a2e;
+        }
+        .overlay-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 140;
+            display: none;
+        }
+        .overlay-backdrop.show {
+            display: block;
+        }
+
+        /* HERO */
+        .hero {
+            text-align: center;
+            padding: 100px 20px 80px;
+        }
+
+        .hero h2 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            font-family: 'Outfit', sans-serif;
+            color: white;
+            margin-bottom: 25px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.5;
+        }
+
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: #FFD166;
+            color: #1e2a2e;
+            padding: 14px 32px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: #e6bc4a;
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid rgba(255,255,255,0.6);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.2s;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: #FFD166;
+            transform: translateY(-3px);
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 70px 0 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            font-family: 'Outfit', sans-serif;
+            color: white;
+            display: inline-block;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #FFD166;
+        }
+
+        /* CARROUSSEL PRODUITS - swipe horizontal sans barre de progression */
+        .carousel-section {
+            margin: 0 0 50px 0;
+        }
+        .carousel-container {
+            width: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            cursor: grab;
+        }
+        .carousel-container::-webkit-scrollbar {
+            display: none;
+        }
+        .carousel-container:active {
+            cursor: grabbing;
+        }
+        .carousel-track {
+            display: flex;
+            gap: 30px;
+            padding: 10px 5px 25px 5px;
+            width: max-content;
+        }
+        .carousel-item {
+            scroll-snap-align: start;
+            width: 340px;
+            flex-shrink: 0;
+            text-align: center;
+        }
+        @media (min-width: 1200px) {
+            .carousel-item { width: 380px; }
+        }
+        @media (max-width: 500px) {
+            .carousel-item { width: 280px; }
+            .carousel-track { gap: 20px; }
+        }
+        .product-image {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.15);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        @media (max-width: 780px) {
+            .product-image { height: 280px; }
+        }
+        @media (max-width: 480px) {
+            .product-image { height: 240px; }
+        }
+        .product-badge {
+            display: inline-block;
+            background: rgba(255,209,102,0.2);
+            color: #FFD166;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .carousel-item h3 {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 10px;
+        }
+        .carousel-item p {
+            color: rgba(255,255,255,0.85);
+            font-size: 0.95rem;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+        .product-price {
+            color: #FFD166;
+            font-weight: 700;
+            margin: 12px 0;
+        }
+        .btn-product {
+            background: transparent;
+            border: 1px solid #FFD166;
+            color: #FFD166;
+            padding: 8px 24px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            transition: 0.2s;
+        }
+        .btn-product:hover {
+            background: rgba(255,209,102,0.2);
+            transform: translateY(-2px);
+        }
+
+        /* 3 CERCLES */
+        .recipe-wrapper {
+            position: relative;
+            margin: 50px 0 70px;
+        }
+
+        .circles-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .circle-card {
+            text-align: center;
+            flex: 1;
+            min-width: 180px;
+            position: relative;
+            background: transparent;
+        }
+
+        .circle {
+            width: 130px;
+            height: 130px;
+            background: transparent;
+            border: 2px solid white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2.8rem;
+            color: white;
+            transition: 0.2s;
+        }
+
+        .circle-card:hover .circle {
+            transform: scale(1.05);
+            border-color: #FFD166;
+        }
+
+        .circle-card:hover .circle i {
+            color: #FFD166;
+        }
+
+        .circle-card h3 {
+            font-size: 1.3rem;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .circle-card p {
+            color: rgba(255,255,255,0.85);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .circles-line {
+            position: absolute;
+            top: 65px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: rgba(255,255,255,0.3);
+            z-index: 1;
+        }
+
+        /* CARROUSSEL MESSAGES */
+        .testimonials-section {
+            margin: 50px 0 70px;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .testimonials-track {
+            display: flex;
+            animation: scrollTestimonials 30s linear infinite;
+            width: fit-content;
+        }
+
+        .testimonial-message {
+            min-width: 320px;
+            padding: 0 30px;
+            text-align: center;
+            border-right: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .testimonial-message p {
+            font-size: 1rem;
+            color: white;
+            line-height: 1.5;
+            margin-bottom: 12px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-size: 0.8rem;
+            color: #FFD166;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        @keyframes scrollTestimonials {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .testimonials-section:hover .testimonials-track {
+            animation-play-state: paused;
+        }
+
+        .custom-section {
+            text-align: center;
+            margin: 80px 0 60px;
+            padding: 0 20px;
+        }
+
+        .custom-section h3 {
+            font-size: 2rem;
+            color: #FFD166;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .custom-section p {
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-custom {
+            background: #FFD166;
+            color: #1e2a2e;
+            padding: 14px 32px;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.2s;
+        }
+
+        .btn-custom:hover {
+            background: #e6bc4a;
+            transform: translateY(-3px);
+        }
+
+        footer {
+            background: transparent;
+            margin-top: 60px;
+            padding: 40px 0 30px;
+            border-top: 1px solid rgba(255,209,102,0.3);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 50px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .footer-col p, .footer-col li {
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 12px;
+            list-style: none;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .footer-col a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: #FFD166;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 14px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            width: 38px;
+            height: 38px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .social-icons a:hover {
+            background: #FFD166;
+            color: #1e2a2e;
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* RESPONSIVE MOBILE */
+        @media (max-width: 780px) {
+            .nav-desktop { display: none; }
+            .menu-toggle { display: flex; }
+            .header-content { justify-content: space-between; align-items: center; gap: 15px; }
+            .language-globe { display: none; }
+            .hero h2 { font-size: 2rem; }
+            .hero p { font-size: 1rem; }
+            .circles-grid { flex-direction: column; align-items: center; }
+            .circles-line { display: none; }
+            .testimonial-message { min-width: 260px; padding: 0 20px; }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 0 16px; }
+            .hero h2 { font-size: 1.6rem; }
+            .section-title h2 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <video class="video-background" autoplay loop muted playsinline>
+        <source src="a.mp4" type="video/mp4">
+    </video>
+
+    <div class="content">
+        <header>
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h1>Boutik Ecole</h1>
+                    </div>
+                    <nav class="nav-desktop">
+                        <ul>
+                            <li><a href="index.html" data-nav-key="home">Accueil</a></li>
+                            <li><a href="boutique.html" data-nav-key="shop">Boutique</a></li>
+                            <li><a href="sponsor.html" data-nav-key="sponsor">Sponsor</a></li>
+                            <li><a href="projets.html" data-nav-key="projects">Projets</a></li>
+                            <li><a href="contact.html" data-nav-key="contact">Contact</a></li>
+                        </ul>
+                    </nav>
+                    <button class="menu-toggle" id="menuToggleBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+                    <button class="language-globe" id="globeBtn">🌐</button>
+                </div>
+            </div>
+        </header>
+
+        <div class="overlay-backdrop" id="menuBackdrop"></div>
+        <div class="mobile-menu-overlay" id="mobileMenu">
+            <button class="close-menu" id="closeMenuBtn"><i class="fas fa-times"></i></button>
+            <ul>
+                <li><a href="index.html" data-mobile-nav-key="home">Accueil</a></li>
+                <li><a href="boutique.html" data-mobile-nav-key="shop">Boutique</a></li>
+                <li><a href="sponsor.html" data-mobile-nav-key="sponsor">Sponsor</a></li>
+                <li><a href="projets.html" data-mobile-nav-key="projects">Projets</a></li>
+                <li><a href="contact.html" data-mobile-nav-key="contact">Contact</a></li>
+            </ul>
+            <button class="mobile-globe" id="mobileGlobeBtn">🌐 Changer langue</button>
+        </div>
+
+        <div class="container">
+            <section class="hero">
+                <h2>Des produits d'exception <br>par les jeunes talents de l'IUT de Douala</h2>
+                <p>Chaque achat soutient directement un étudiant. De la beauté à l'épicerie fine, en passant par l'innovation et le design, nos filières transforment leur savoir-faire en produits uniques.</p>
+                <div class="hero-btns">
+                    <a href="boutique.html" class="btn-primary"><i class="fas fa-store"></i> Découvrir la boutique</a>
+                    <a href="sponsor.html" class="btn-outline"><i class="fas fa-hand-holding-heart"></i> Soutenir un projet</a>
+                </div>
+            </section>
+
+            <!-- SECTION CARROUSSEL PRODUITS (suppression des onglets) -->
+            <div class="section-title"><h2>Réalisations d'exception</h2></div>
+            <div class="carousel-section">
+                <div class="carousel-container" id="productCarousel">
+                    <div class="carousel-track" id="productTrack">
+                        <!-- Les produits seront injectés ici dynamiquement pour la traduction -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 3 CERCLES -->
+            <div class="section-title"><h2>La recette du succès</h2></div>
+            <div class="recipe-wrapper">
+                <div class="circles-line"></div>
+                <div class="circles-grid">
+                    <div class="circle-card">
+                        <div class="circle"><i class="fas fa-lightbulb"></i></div>
+                        <h3>Idée & prototypage</h3>
+                        <p>Les étudiants imaginent et conçoivent leur premier prototype en laboratoire ou atelier.</p>
+                    </div>
+                    <div class="circle-card">
+                        <div class="circle"><i class="fas fa-flask"></i></div>
+                        <h3>Test & validation</h3>
+                        <p>Les produits sont testés par des enseignants et pairs avant la mise en production.</p>
+                    </div>
+                    <div class="circle-card">
+                        <div class="circle"><i class="fas fa-store"></i></div>
+                        <h3>Mise en vente</h3>
+                        <p>Les créations rejoignent Boutik Ecole et sont accessibles à tous.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION CARROUSSEL MESSAGES -->
+            <div class="section-title"><h2>Ils parlent de nous</h2></div>
+            <div class="testimonials-section">
+                <div class="testimonials-track">
+                    <div class="testimonial-message"><p>"L'IUT de Douala lance sa boutique étudiante : savons, drones et vins artisanaux."</p><div class="testimonial-author">— Cameroun Web</div></div>
+                    <div class="testimonial-message"><p>"Une initiative qui mérite d'être soutenue et encouragée."</p><div class="testimonial-author">— Journal Le Défi</div></div>
+                    <div class="testimonial-message"><p>"Des étudiants créateurs, une boutique engagée, des produits de qualité."</p><div class="testimonial-author">— Radio Douala</div></div>
+                    <div class="testimonial-message"><p>"Boutik Ecole est une vitrine exceptionnelle du savoir-faire local."</p><div class="testimonial-author">— Africa Innovation</div></div>
+                    <div class="testimonial-message"><p>"Une première au Cameroun : des produits étudiants en vente directe."</p><div class="testimonial-author">— Douala Business</div></div>
+                    <div class="testimonial-message"><p>"Je soutiens cette initiative qui valorise les talents de demain."</p><div class="testimonial-author">— Partenaire institutionnel</div></div>
+                    <div class="testimonial-message"><p>"Un modèle à reproduire dans tous les IUT du pays."</p><div class="testimonial-author">— Enseignant-chercheur</div></div>
+                    <div class="testimonial-message"><p>"L'IUT de Douala lance sa boutique étudiante : savons, drones et vins artisanaux."</p><div class="testimonial-author">— Cameroun Web</div></div>
+                    <div class="testimonial-message"><p>"Une initiative qui mérite d'être soutenue et encouragée."</p><div class="testimonial-author">— Journal Le Défi</div></div>
+                    <div class="testimonial-message"><p>"Des étudiants créateurs, une boutique engagée, des produits de qualité."</p><div class="testimonial-author">— Radio Douala</div></div>
+                    <div class="testimonial-message"><p>"Boutik Ecole est une vitrine exceptionnelle du savoir-faire local."</p><div class="testimonial-author">— Africa Innovation</div></div>
+                    <div class="testimonial-message"><p>"Une première au Cameroun : des produits étudiants en vente directe."</p><div class="testimonial-author">— Douala Business</div></div>
+                    <div class="testimonial-message"><p>"Je soutiens cette initiative qui valorise les talents de demain."</p><div class="testimonial-author">— Partenaire institutionnel</div></div>
+                    <div class="testimonial-message"><p>"Un modèle à reproduire dans tous les IUT du pays."</p><div class="testimonial-author">— Enseignant-chercheur</div></div>
+                </div>
+            </div>
+
+            <!-- SECTION COLLABORATION -->
+            <div class="custom-section">
+                <h3>Vous souhaitez collaborer avec nous ?</h3>
+                <p>Entreprise, institution, particulier — vous avez un projet de produit personnalisé, un partenariat ou une commande spéciale ? Nos étudiants peuvent relever votre défi.</p>
+                <a href="contact.html" class="btn-custom">Discuter d'un projet <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-col">
+                        <h3>Boutik Ecole</h3>
+                        <p>La boutique officielle des étudiants de l'IUT de Douala. Achetez local, soutenez le talent.</p>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-col">
+                        <h3 data-footer-title="links">Liens</h3>
+                        <ul>
+                            <li><a href="index.html" data-footer-link="home">Accueil</a></li>
+                            <li><a href="boutique.html" data-footer-link="shop">Boutique</a></li>
+                            <li><a href="sponsor.html" data-footer-link="sponsor">Sponsor</a></li>
+                            <li><a href="projets.html" data-footer-link="projects">Projets</a></li>
+                            <li><a href="contact.html" data-footer-link="contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h3 data-footer-title="contact">Contact</h3>
+                        <ul>
+                            <li><i class="fas fa-map-marker-alt"></i> IUT de Douala, Cameroun</li>
+                            <li><i class="fas fa-envelope"></i> contact@boutikecole.com</li>
+                            <li><i class="fas fa-phone-alt"></i> +237 6XX XX XX XX</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="copyright">
+                    <p>© 2026 Boutik Ecole – IUT de Douala. Tous droits réservés.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Liste des produits avec les images demandées
+        const productsData = {
+            fr: [
+                { img: "vin1.jpg", badge: "Œnologie", title: "Vin de table artisanal", desc: "Élaboré par nos étudiants en biotechnologie. Un savoir-faire local authentique.", price: "À partir de 4 500 FCFA" },
+                { img: "elixir.jpeg", badge: "Bien-être", title: "Elixir anti-stress", desc: "Plantes adaptogènes pour calmer l'anxiété et favoriser la relaxation.", price: "À partir de 3 000 FCFA" },
+                { img: "lait.jpg", badge: "Cosmétique", title: "Lait hydratant à la carotte", desc: "Lait corporel nourrissant à la carotte pour une peau éclatante.", price: "À partir de 2 500 FCFA" },
+                { img: "sirop.jpeg", badge: "Phytothérapie", title: "Sirop prise de poids", desc: "Sirop naturel à base de plantes pour une prise de poids saine.", price: "À partir de 3 500 FCFA" },
+                { img: "sirop epice.jpeg", badge: "Immunité", title: "Sirop épicé", desc: "Aux épices pour renforcer l'immunité et soulager les maux de gorge.", price: "À partir de 3 000 FCFA" },
+                { img: "gellules.jpeg", badge: "Médecine", title: "Thé antipaludéen", desc: "Infusion aux propriétés antipaludéennes, plantes médicinales locales.", price: "À partir de 2 000 FCFA" },
+                { img: "pommade.jpeg", badge: "Dermatologie", title: "Pommade antifongique", desc: "Traitement topique naturel contre les infections fongiques.", price: "À partir de 2 500 FCFA" },
+                { img: "biscuit.jpeg", badge: "Nutrition", title: "Biscuits à la spiruline", desc: "Riches en protéines et nutriments essentiels.", price: "À partir de 1 500 FCFA" },
+                { img: "poudre.jpeg", badge: "Épices", title: "Poudre de curcuma", desc: "Vertus anti-inflammatoires et antioxydantes.", price: "À partir de 1 000 FCFA" }
+            ],
+            en: [
+                { img: "vin1.jpg", badge: "Oenology", title: "Artisanal table wine", desc: "Made by our biotechnology students. Authentic local know-how.", price: "From 4,500 CFA" },
+                { img: "elixir.jpeg", badge: "Wellness", title: "Anti-stress elixir", desc: "Adaptogenic plants to calm anxiety and promote relaxation.", price: "From 3,000 CFA" },
+                { img: "lait.jpg", badge: "Cosmetics", title: "Carrot moisturizing milk", desc: "Nourishing body milk for radiant skin.", price: "From 2,500 CFA" },
+                { img: "sirop.jpeg", badge: "Herbalism", title: "Weight gain syrup", desc: "Natural plant-based syrup for healthy weight gain.", price: "From 3,500 CFA" },
+                { img: "sirop epice.jpeg", badge: "Immunity", title: "Spiced syrup", desc: "With spices to boost immunity and soothe sore throats.", price: "From 3,000 CFA" },
+                { img: "the antipaludeen.jpeg", badge: "Medicine", title: "Anti-malarial tea", desc: "Infusion with anti-malarial properties from local medicinal plants.", price: "From 2,000 CFA" },
+                { img: "pommade.jpeg", badge: "Dermatology", title: "Antifungal ointment", desc: "Natural topical treatment for fungal infections.", price: "From 2,500 CFA" },
+                { img: "biscuit.jpeg", badge: "Nutrition", title: "Spirulina biscuits", desc: "Rich in protein and essential nutrients.", price: "From 1,500 CFA" },
+                { img: "poudre.jpeg", badge: "Spices", title: "Turmeric powder", desc: "Anti-inflammatory and antioxidant benefits.", price: "From 1,000 CFA" }
+            ]
+        };
+
+        let currentLang = 'fr';
+
+        function renderProducts() {
+            const track = document.getElementById('productTrack');
+            const products = productsData[currentLang];
+            track.innerHTML = products.map(p => `
+                <div class="carousel-item">
+                    <img src="${p.img}" alt="${p.title}" class="product-image" onerror="this.src='https://placehold.co/600x400/2a2a2a/FFD166?text=Produit'">
+                    <div class="product-badge">${p.badge}</div>
+                    <h3>${p.title}</h3>
+                    <p>${p.desc}</p>
+                    <div class="product-price">${p.price}</div>
+                    <a href="boutique.html" class="btn-product">Découvrir</a>
+                </div>
+            `).join('');
+        }
+
+        // MENU HAMBURGER
+        const menuToggle = document.getElementById('menuToggleBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuBackdrop = document.getElementById('menuBackdrop');
+        const closeMenuBtn = document.getElementById('closeMenuBtn');
+        function openMenu() { mobileMenu.classList.add('open'); menuBackdrop.classList.add('show'); document.body.style.overflow = 'hidden'; }
+        function closeMenu() { mobileMenu.classList.remove('open'); menuBackdrop.classList.remove('show'); document.body.style.overflow = ''; }
+        if(menuToggle) menuToggle.addEventListener('click', openMenu);
+        if(closeMenuBtn) closeMenuBtn.addEventListener('click', closeMenu);
+        if(menuBackdrop) menuBackdrop.addEventListener('click', closeMenu);
+
+        // TRADUCTION COMPLÈTE
+        const globeBtn = document.getElementById('globeBtn');
+        const mobileGlobeBtn = document.getElementById('mobileGlobeBtn');
+
+        const translations = {
+            fr: {
+                hero_title: "Des produits d'exception <br>par les jeunes talents de l'IUT de Douala",
+                hero_text: "Chaque achat soutient directement un étudiant. De la beauté à l'épicerie fine, en passant par l'innovation et le design, nos filières transforment leur savoir-faire en produits uniques.",
+                btn1: "Découvrir la boutique",
+                btn2: "Soutenir un projet",
+                section_projects: "Réalisations d'exception",
+                section_recipe: "La recette du succès",
+                recipe1_title: "Idée & prototypage",
+                recipe1_desc: "Les étudiants imaginent et conçoivent leur premier prototype en laboratoire ou atelier.",
+                recipe2_title: "Test & validation",
+                recipe2_desc: "Les produits sont testés par des enseignants et pairs avant la mise en production.",
+                recipe3_title: "Mise en vente",
+                recipe3_desc: "Les créations rejoignent Boutik Ecole et sont accessibles à tous.",
+                section_press: "Ils parlent de nous",
+                custom_title: "Vous souhaitez collaborer avec nous ?",
+                custom_text: "Entreprise, institution, particulier — vous avez un projet de produit personnalisé, un partenariat ou une commande spéciale ? Nos étudiants peuvent relever votre défi.",
+                custom_btn: "Discuter d'un projet",
+                footer_desc: "La boutique officielle des étudiants de l'IUT de Douala. Achetez local, soutenez le talent.",
+                copyright: "© 2026 Boutik Ecole – IUT de Douala. Tous droits réservés.",
+                footer_links_title: "Liens",
+                footer_contact_title: "Contact",
+                mobile_lang_btn: "🌐 Changer langue",
+                nav_home: "Accueil", nav_shop: "Boutique", nav_sponsor: "Sponsor", nav_projects: "Projets", nav_contact: "Contact"
+            },
+            en: {
+                hero_title: "Exceptional products <br>by the young talents of IUT Douala",
+                hero_text: "Every purchase directly supports a student. From beauty to fine food, innovation and design, our departments transform their know-how into unique products.",
+                btn1: "Discover the shop",
+                btn2: "Support a project",
+                section_projects: "Exceptional achievements",
+                section_recipe: "The recipe for success",
+                recipe1_title: "Idea & prototyping",
+                recipe1_desc: "Students imagine and design their first prototype in the lab or workshop.",
+                recipe2_title: "Testing & validation",
+                recipe2_desc: "Products are tested by teachers and peers before production.",
+                recipe3_title: "On sale",
+                recipe3_desc: "Creations join Boutik Ecole and become accessible to everyone.",
+                section_press: "They talk about us",
+                custom_title: "Want to collaborate with us?",
+                custom_text: "Company, institution, individual — you have a custom product project, a partnership or a special order? Our students can take on your challenge.",
+                custom_btn: "Discuss a project",
+                footer_desc: "The official shop of IUT Douala students. Buy local, support talent.",
+                copyright: "© 2026 Boutik Ecole – IUT of Douala. All rights reserved.",
+                footer_links_title: "Links",
+                footer_contact_title: "Contact",
+                mobile_lang_btn: "🌐 Change language",
+                nav_home: "Home", nav_shop: "Shop", nav_sponsor: "Sponsor", nav_projects: "Projects", nav_contact: "Contact"
+            }
+        };
+
+        function updateLanguage(lang) {
+            currentLang = lang;
+            const t = translations[lang];
+            
+            document.querySelector('.hero h2').innerHTML = t.hero_title;
+            document.querySelector('.hero p').innerHTML = t.hero_text;
+            document.querySelector('.hero-btns .btn-primary').innerHTML = `<i class="fas fa-store"></i> ${t.btn1}`;
+            document.querySelector('.hero-btns .btn-outline').innerHTML = `<i class="fas fa-hand-holding-heart"></i> ${t.btn2}`;
+            
+            const sectionTitles = document.querySelectorAll('.section-title h2');
+            if(sectionTitles[0]) sectionTitles[0].innerHTML = t.section_projects;
+            if(sectionTitles[1]) sectionTitles[1].innerHTML = t.section_recipe;
+            if(sectionTitles[2]) sectionTitles[2].innerHTML = t.section_press;
+            
+            const circles = document.querySelectorAll('.circle-card');
+            if(circles[0]) {
+                circles[0].querySelector('h3').textContent = t.recipe1_title;
+                circles[0].querySelector('p').textContent = t.recipe1_desc;
+                circles[1].querySelector('h3').textContent = t.recipe2_title;
+                circles[1].querySelector('p').textContent = t.recipe2_desc;
+                circles[2].querySelector('h3').textContent = t.recipe3_title;
+                circles[2].querySelector('p').textContent = t.recipe3_desc;
+            }
+            
+            document.querySelector('.custom-section h3').innerHTML = t.custom_title;
+            document.querySelector('.custom-section p').innerHTML = t.custom_text;
+            document.querySelector('.btn-custom').innerHTML = `${t.custom_btn} <i class="fas fa-arrow-right"></i>`;
+            document.querySelector('.footer-col:first-child p').innerHTML = t.footer_desc;
+            document.querySelector('.copyright p').innerHTML = t.copyright;
+            
+            const footerTitles = document.querySelectorAll('.footer-col h3');
+            if(footerTitles[1]) footerTitles[1].innerHTML = t.footer_links_title;
+            if(footerTitles[2]) footerTitles[2].innerHTML = t.footer_contact_title;
+            
+            const footerLinks = document.querySelectorAll('.footer-col ul li a');
+            const linkKeys = ['home', 'shop', 'sponsor', 'projects', 'contact'];
+            footerLinks.forEach((link, idx) => { if(idx < linkKeys.length) link.innerHTML = t[`nav_${linkKeys[idx]}`]; });
+            
+            const desktopLinks = document.querySelectorAll('.nav-desktop ul li a');
+            desktopLinks.forEach((link, idx) => { if(idx < linkKeys.length) link.innerHTML = t[`nav_${linkKeys[idx]}`]; });
+            
+            const mobileLinks = document.querySelectorAll('.mobile-menu-overlay ul li a');
+            mobileLinks.forEach((link, idx) => { if(idx < linkKeys.length) link.innerHTML = t[`nav_${linkKeys[idx]}`]; });
+            
+            const mobileBtn = document.getElementById('mobileGlobeBtn');
+            if(mobileBtn) mobileBtn.innerHTML = t.mobile_lang_btn;
+            
+            renderProducts();
+        }
+
+        function toggleLang() {
+            currentLang = currentLang === 'fr' ? 'en' : 'fr';
+            updateLanguage(currentLang);
+        }
+
+        globeBtn.addEventListener('click', toggleLang);
+        if(mobileGlobeBtn) mobileGlobeBtn.addEventListener('click', () => { toggleLang(); closeMenu(); });
+        
+        renderProducts();
+        updateLanguage('fr');
+    </script>
+</body>
+</html>

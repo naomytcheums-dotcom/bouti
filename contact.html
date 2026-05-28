@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Boutik Ecole | Contact – IUT de Douala</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: #f7f3ee;
+            min-height: 100vh;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* HEADER - TRANSPARENT SUR BANNER */
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 20px 0;
+            background: transparent;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: #FFD166;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            font-family: 'Outfit', sans-serif;
+            color: white;
+            letter-spacing: -0.5px;
+        }
+
+        /* Navigation desktop */
+        .nav-desktop ul {
+            display: flex;
+            list-style: none;
+            gap: 28px;
+            flex-wrap: wrap;
+        }
+
+        .nav-desktop a {
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: 0.2s;
+        }
+
+        .nav-desktop a:hover {
+            color: #FFD166;
+        }
+
+        .language-globe {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .language-globe:hover {
+            transform: scale(1.1);
+            color: #FFD166;
+        }
+
+        /* MENU HAMBURGER (visible uniquement sur mobile) */
+        .menu-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 200;
+            transition: 0.2s;
+        }
+        .menu-toggle:hover {
+            color: #FFD166;
+        }
+
+        /* Menu mobile overlay */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 320px;
+            height: 100vh;
+            background: white;
+            z-index: 150;
+            transition: right 0.3s ease-in-out;
+            padding: 30px 24px;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        .mobile-menu-overlay.open {
+            right: 0;
+        }
+        .mobile-menu-overlay .close-menu {
+            background: transparent;
+            border: none;
+            font-size: 1.8rem;
+            color: #1e2a2e;
+            align-self: flex-end;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        .mobile-menu-overlay ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+        .mobile-menu-overlay ul li a {
+            text-decoration: none;
+            color: #1e2a2e;
+            font-size: 1.3rem;
+            font-weight: 600;
+            font-family: 'Outfit', sans-serif;
+            transition: 0.2s;
+            display: block;
+            padding: 6px 0;
+        }
+        .mobile-menu-overlay ul li a:hover {
+            color: #FFD166;
+        }
+        .mobile-globe {
+            margin-top: 20px;
+            background: #f0f0f0;
+            border: none;
+            padding: 12px;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: #1e2a2e;
+            transition: 0.2s;
+        }
+        .mobile-globe:hover {
+            background: #FFD166;
+            color: #1e2a2e;
+        }
+        .overlay-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 140;
+            display: none;
+        }
+        .overlay-backdrop.show {
+            display: block;
+        }
+
+        /* HERO BANNER */
+        .hero-banner {
+            position: relative;
+            background-image: url('bb.jpg');
+            background-size: cover;
+            background-position: center;
+            min-height: 500px;
+            width: 100%;
+        }
+
+        .hero-overlay {
+            background: rgba(0, 0, 0, 0.45);
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px 40px 60px;
+        }
+
+        .hero-overlay h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero-overlay p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.95);
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            background: #FFD166;
+            color: #1e2a2e;
+            padding: 12px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+
+        .hero-cta:hover {
+            background: #e6bc4a;
+            transform: translateY(-3px);
+        }
+
+        /* SECTION CONTACT 2 COLONNES */
+        .contact-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 60px 0 50px;
+        }
+
+        /* INFOS CONTACT */
+        .contact-info {
+            background: white;
+            border-radius: 24px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            color: #1e2a2e;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .info-item i {
+            font-size: 1.3rem;
+            color: #FFD166;
+            margin-top: 3px;
+        }
+
+        .info-item h4 {
+            color: #1e2a2e;
+            font-size: 1rem;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .info-item p, .info-item a {
+            color: #5a6e7a;
+            text-decoration: none;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .info-item a:hover {
+            color: #FFD166;
+        }
+
+        /* FORMULAIRE */
+        .contact-form {
+            background: white;
+            border-radius: 24px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .contact-form h3 {
+            font-size: 1.5rem;
+            color: #1e2a2e;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .form-group label {
+            color: #1e2a2e;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+            background: #fafbfc;
+            color: #1e2a2e;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #FFD166;
+        }
+
+        .btn-submit {
+            background: #ff0000;
+            color: white;
+            padding: 14px 32px;
+            border-radius: 40px;
+            border: none;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            width: fit-content;
+        }
+
+        .btn-submit:hover {
+            background: #cc0000;
+            transform: translateY(-2px);
+        }
+
+        /* SECTION BOTTOM: MAPS + FAQ */
+        .bottom-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 40px 0 50px;
+        }
+
+        .map-section {
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            height: 400px;
+        }
+
+        .map-section iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .faq-section {
+            background: white;
+            border-radius: 24px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .faq-section h3 {
+            font-size: 1.5rem;
+            color: #1e2a2e;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .faq-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #eee;
+            padding: 0 5px;
+        }
+
+        .faq-question {
+            padding: 15px 0;
+            font-weight: 700;
+            color: #1e2a2e;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question i {
+            color: #FFD166;
+            transition: 0.2s;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            color: #5a6e7a;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding-bottom: 18px;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        /* BANNER NEWSLETTER - PLEINE LARGEUR */
+        .newsletter-full {
+            width: 100%;
+            background: #e8e0d5;
+            margin: 30px 0 50px;
+        }
+
+        .newsletter-banner {
+            background: #e8e0d5;
+            padding: 80px 40px;
+        }
+
+        .newsletter-content {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .newsletter-content h3 {
+            font-size: 2.2rem;
+            color: #1e2a2e;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .newsletter-content p {
+            color: #4a5a66;
+            margin-bottom: 35px;
+            font-size: 1rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            min-width: 280px;
+            padding: 16px 24px;
+            border-radius: 50px;
+            border: 1px solid #ccc;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            background: white;
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            border-color: #ff0000;
+            box-shadow: 0 0 0 3px rgba(255,0,0,0.2);
+        }
+
+        .newsletter-form button {
+            background: #ff0000;
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .newsletter-form button:hover {
+            background: #cc0000;
+            transform: translateY(-2px);
+        }
+
+        /* FOOTER */
+        footer {
+            background: transparent;
+            margin-top: 40px;
+            padding: 40px 0 30px;
+            border-top: 1px solid rgba(255,209,102,0.3);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 50px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            color: #FFD166;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .footer-col p, .footer-col li {
+            color: rgba(0,0,0,0.7);
+            margin-bottom: 12px;
+            list-style: none;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .footer-col a {
+            color: rgba(0,0,0,0.7);
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: #FFD166;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 14px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            width: 38px;
+            height: 38px;
+            background: rgba(0,0,0,0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+            color: #1e2a2e;
+            font-size: 1rem;
+        }
+
+        .social-icons a:hover {
+            background: #FFD166;
+            color: #1e2a2e;
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            font-size: 0.8rem;
+            color: rgba(0,0,0,0.5);
+        }
+
+        /* RESPONSIVE MOBILE */
+        @media (max-width: 780px) {
+            .nav-desktop {
+                display: none;
+            }
+            .menu-toggle {
+                display: flex;
+            }
+            .header-content {
+                justify-content: space-between;
+                align-items: center;
+                gap: 15px;
+            }
+            .language-globe {
+                display: none;
+            }
+            .hero-banner {
+                min-height: 400px;
+            }
+            .hero-overlay {
+                min-height: 400px;
+                padding: 80px 20px 40px;
+            }
+            .hero-overlay h2 {
+                font-size: 1.8rem;
+            }
+            .hero-overlay p {
+                font-size: 0.9rem;
+            }
+            .contact-section {
+                grid-template-columns: 1fr;
+            }
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+            .bottom-section {
+                grid-template-columns: 1fr;
+            }
+            .map-section {
+                height: 300px;
+            }
+            .newsletter-form {
+                flex-direction: column;
+            }
+            .newsletter-form input {
+                width: 100%;
+            }
+            .newsletter-banner {
+                padding: 50px 25px;
+            }
+            .newsletter-content h3 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="content">
+        <header>
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h1>Boutik Ecole</h1>
+                    </div>
+                    <!-- Navigation desktop -->
+                    <nav class="nav-desktop">
+                        <ul>
+                            <li><a href="index.html" data-nav-key="home">Accueil</a></li>
+                            <li><a href="boutique.html" data-nav-key="shop">Boutique</a></li>
+                            <li><a href="sponsor.html" data-nav-key="sponsor">Sponsor</a></li>
+                            <li><a href="projets.html" data-nav-key="projects">Projets</a></li>
+                            <li><a href="contact.html" data-nav-key="contact">Contact</a></li>
+                        </ul>
+                    </nav>
+                    <button class="menu-toggle" id="menuToggleBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+                    <button class="language-globe" id="globeBtn">🌐</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Overlay mobile -->
+        <div class="overlay-backdrop" id="menuBackdrop"></div>
+        <div class="mobile-menu-overlay" id="mobileMenu">
+            <button class="close-menu" id="closeMenuBtn"><i class="fas fa-times"></i></button>
+            <ul>
+                <li><a href="index.html" data-mobile-nav-key="home">Accueil</a></li>
+                <li><a href="boutique.html" data-mobile-nav-key="shop">Boutique</a></li>
+                <li><a href="sponsor.html" data-mobile-nav-key="sponsor">Sponsor</a></li>
+                <li><a href="projets.html" data-mobile-nav-key="projects">Projets</a></li>
+                <li><a href="contact.html" data-mobile-nav-key="contact">Contact</a></li>
+            </ul>
+            <button class="mobile-globe" id="mobileGlobeBtn">🌐 Changer langue</button>
+        </div>
+
+        <!-- HERO BANNER -->
+        <div class="hero-banner">
+            <div class="hero-overlay">
+                <h2 data-key="hero_title">Contactez-nous</h2>
+                <p data-key="hero_text">Une question ? Une suggestion ? Notre équipe est à votre écoute. N'hésitez pas à nous contacter via le formulaire ou nos coordonnées ci-dessous.</p>
+                <a href="#contact" class="hero-cta" data-key="hero_cta">Nous écrire <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <div class="container" id="contact">
+            <div class="contact-section">
+                <div class="contact-info">
+                    <h3 data-key="info_title">Nos coordonnées</h3>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4 data-key="address_title">Adresse</h4>
+                            <p data-key="address_text">IUT de Douala<br>123 Avenue de l'Université<br>Douala, Cameroun</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <h4 data-key="phone_title">Téléphone</h4>
+                            <p data-key="phone_text">+237 6 55 88 99 00<br>+237 6 77 44 55 66</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4 data-key="email_title">Email</h4>
+                            <p><a href="mailto:contact@boutikecole.com">contact@boutikecole.com</a><br><a href="mailto:partenariat@boutikecole.com">partenariat@boutikecole.com</a></p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4 data-key="hours_title">Horaires d'ouverture</h4>
+                            <p data-key="hours_text">Lundi – Vendredi : 9h00 – 17h00<br>Samedi : 10h00 – 14h00<br>Dimanche : Fermé</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h3 data-key="form_title">Envoyez-nous un message</h3>
+                    <form id="contactForm">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label data-key="form_name">Nom complet</label>
+                                <input type="text" id="contactName" placeholder="Votre nom" required>
+                            </div>
+                            <div class="form-group">
+                                <label data-key="form_email">Email</label>
+                                <input type="email" id="contactEmail" placeholder="votre@email.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label data-key="form_phone">Téléphone</label>
+                                <input type="tel" id="contactPhone" placeholder="+237 6 55 88 99 00">
+                            </div>
+                            <div class="form-group">
+                                <label data-key="form_subject">Objet</label>
+                                <select id="contactSubject">
+                                    <option value="Information sur un produit">Information sur un produit</option>
+                                    <option value="Devenir sponsor">Devenir sponsor</option>
+                                    <option value="Proposition de stage">Proposition de stage</option>
+                                    <option value="Partenariat">Partenariat</option>
+                                    <option value="Autre demande">Autre demande</option>
+                                </select>
+                            </div>
+                            <div class="form-group full-width">
+                                <label data-key="form_message">Message</label>
+                                <textarea id="contactMessage" rows="5" placeholder="Votre message..." required></textarea>
+                            </div>
+                            <div class="form-group full-width">
+                                <button type="submit" class="btn-submit" data-key="form_btn">Envoyer le message <i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- BANNER NEWSLETTER -->
+        <div class="newsletter-full">
+            <div class="newsletter-banner">
+                <div class="newsletter-content">
+                    <h3 data-key="newsletter_title">Restez connecté(e) !</h3>
+                    <p data-key="newsletter_text">Inscrivez-vous à notre newsletter et recevez nos offres exclusives, actualités et événements du campus.</p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <input type="email" id="newsletterEmail" placeholder="Votre adresse email" required>
+                        <button type="submit" data-key="newsletter_btn">S'abonner <i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="bottom-section">
+                <div class="map-section">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15917.357677233447!2d9.701417!3d4.051056!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10611248b1a3fb2f%3A0x8a5b5c5a5b5c5a5b!2sDouala%2C%20Cameroun!5e0!3m2!1sfr!2sfr!4v1700000000000!5m2!1sfr!2sfr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+
+                <div class="faq-section">
+                    <h3 data-key="faq_title">Questions fréquentes</h3>
+                    <div class="faq-grid">
+                        <div class="faq-item">
+                            <div class="faq-question" data-key="faq1_q">Quels sont les délais de réponse ? <i class="fas fa-chevron-down"></i></div>
+                            <div class="faq-answer" data-key="faq1_a">Nous répondons à tous les messages sous 48 heures ouvrées. Pour les demandes urgentes, privilégiez l'appel téléphonique.</div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question" data-key="faq2_q">Puis-je visiter la boutique physique ? <i class="fas fa-chevron-down"></i></div>
+                            <div class="faq-answer" data-key="faq2_a">Oui, la boutique est située au sein du campus de l'IUT de Douala. Elle est ouverte du lundi au vendredi de 9h à 17h.</div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question" data-key="faq3_q">Comment devenir sponsor de l'IUT ? <i class="fas fa-chevron-down"></i></div>
+                            <div class="faq-answer" data-key="faq3_a">Rendez-vous sur notre page "Sponsor" ou contactez-nous directement par email à partenariat@boutikecole.com</div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question" data-key="faq4_q">Puis-je proposer un stage ou un emploi ? <i class="fas fa-chevron-down"></i></div>
+                            <div class="faq-answer" data-key="faq4_a">Absolument ! Envoyez-nous votre offre par email ou via le formulaire avec l'objet "Proposition de stage". Nous la diffuserons à nos étudiants.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-col">
+                        <h3>Boutik Ecole</h3>
+                        <p data-key="footer_desc">La boutique officielle des étudiants de l'IUT de Douala. Achetez local, soutenez le talent.</p>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-col">
+                        <h3 data-footer-title="links">Liens</h3>
+                        <ul>
+                            <li><a href="index.html" data-footer-link="home">Accueil</a></li>
+                            <li><a href="boutique.html" data-footer-link="shop">Boutique</a></li>
+                            <li><a href="sponsor.html" data-footer-link="sponsor">Sponsor</a></li>
+                            <li><a href="projets.html" data-footer-link="projects">Projets</a></li>
+                            <li><a href="contact.html" data-footer-link="contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h3 data-footer-title="contact">Contact</h3>
+                        <ul>
+                            <li><i class="fas fa-map-marker-alt"></i> IUT de Douala, Cameroun</li>
+                            <li><i class="fas fa-envelope"></i> contact@boutikecole.com</li>
+                            <li><i class="fas fa-phone-alt"></i> +237 6 55 88 99 00</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="copyright">
+                    <p data-key="copyright">© 2026 Boutik Ecole – IUT de Douala. Tous droits réservés.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Numéro WhatsApp pour reception des formulaires
+        const WHATSAPP_NUMBER = "237655920087";
+        
+        // Envoi des données vers WhatsApp sans alert
+        function sendToWhatsApp(data) {
+            const message = encodeURIComponent(data);
+            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, '_blank');
+        }
+
+        // Formulaire de contact
+        document.getElementById('contactForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('contactName')?.value || '';
+            const email = document.getElementById('contactEmail')?.value || '';
+            const phone = document.getElementById('contactPhone')?.value || '';
+            const subject = document.getElementById('contactSubject')?.value || '';
+            const message = document.getElementById('contactMessage')?.value || '';
+            
+            const whatsappMsg = `📞 *NOUVEAU MESSAGE DE CONTACT* 📞%0A%0A👤 *Nom:* ${name}%0A📧 *Email:* ${email}%0A📱 *Téléphone:* ${phone}%0A📌 *Objet:* ${subject}%0A💬 *Message:* ${message}%0A%0A--- Message envoyé depuis Boutik Ecole ---`;
+            sendToWhatsApp(whatsappMsg);
+            this.reset();
+        });
+
+        // Formulaire newsletter
+        document.getElementById('newsletterForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('newsletterEmail')?.value || '';
+            const whatsappMsg = `📧 *NOUVEL ABONNÉ NEWSLETTER* 📧%0A%0A📧 *Email:* ${email}%0A%0A--- Inscription newsletter depuis Boutik Ecole ---`;
+            sendToWhatsApp(whatsappMsg);
+            this.reset();
+        });
+
+        // FAQ Accordéon
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                faqItem.classList.toggle('active');
+            });
+        });
+
+        // Menu hamburger
+        const menuToggle = document.getElementById('menuToggleBtn');
+        const mobileMenuDiv = document.getElementById('mobileMenu');
+        const menuBackdrop = document.getElementById('menuBackdrop');
+        const closeMenuBtn = document.getElementById('closeMenuBtn');
+        function openMenu() { mobileMenuDiv.classList.add('open'); menuBackdrop.classList.add('show'); document.body.style.overflow = 'hidden'; }
+        function closeMenu() { mobileMenuDiv.classList.remove('open'); menuBackdrop.classList.remove('show'); document.body.style.overflow = ''; }
+        if(menuToggle) menuToggle.addEventListener('click', openMenu);
+        if(closeMenuBtn) closeMenuBtn.addEventListener('click', closeMenu);
+        if(menuBackdrop) menuBackdrop.addEventListener('click', closeMenu);
+
+        // Traduction complète
+        const globeBtn = document.getElementById('globeBtn');
+        const mobileGlobeBtn = document.getElementById('mobileGlobeBtn');
+        let currentLang = 'fr';
+
+        const translations = {
+            fr: {
+                hero_title: "Contactez-nous",
+                hero_text: "Une question ? Une suggestion ? Notre équipe est à votre écoute. N'hésitez pas à nous contacter via le formulaire ou nos coordonnées ci-dessous.",
+                hero_cta: "Nous écrire",
+                info_title: "Nos coordonnées",
+                address_title: "Adresse",
+                address_text: "IUT de Douala<br>123 Avenue de l'Université<br>Douala, Cameroun",
+                phone_title: "Téléphone",
+                phone_text: "+237 6 55 88 99 00<br>+237 6 77 44 55 66",
+                email_title: "Email",
+                hours_title: "Horaires d'ouverture",
+                hours_text: "Lundi – Vendredi : 9h00 – 17h00<br>Samedi : 10h00 – 14h00<br>Dimanche : Fermé",
+                form_title: "Envoyez-nous un message",
+                form_name: "Nom complet",
+                form_email: "Email",
+                form_phone: "Téléphone",
+                form_subject: "Objet",
+                form_message: "Message",
+                form_btn: "Envoyer le message",
+                newsletter_title: "Restez connecté(e) !",
+                newsletter_text: "Inscrivez-vous à notre newsletter et recevez nos offres exclusives, actualités et événements du campus.",
+                newsletter_btn: "S'abonner",
+                faq_title: "Questions fréquentes",
+                faq1_q: "Quels sont les délais de réponse ?",
+                faq1_a: "Nous répondons à tous les messages sous 48 heures ouvrées. Pour les demandes urgentes, privilégiez l'appel téléphonique.",
+                faq2_q: "Puis-je visiter la boutique physique ?",
+                faq2_a: "Oui, la boutique est située au sein du campus de l'IUT de Douala. Elle est ouverte du lundi au vendredi de 9h à 17h.",
+                faq3_q: "Comment devenir sponsor de l'IUT ?",
+                faq3_a: "Rendez-vous sur notre page 'Sponsor' ou contactez-nous directement par email à partenariat@boutikecole.com",
+                faq4_q: "Puis-je proposer un stage ou un emploi ?",
+                faq4_a: "Absolument ! Envoyez-nous votre offre par email ou via le formulaire avec l'objet 'Proposition de stage'. Nous la diffuserons à nos étudiants.",
+                footer_desc: "La boutique officielle des étudiants de l'IUT de Douala. Achetez local, soutenez le talent.",
+                copyright: "© 2026 Boutik Ecole – IUT de Douala. Tous droits réservés.",
+                footer_links_title: "Liens",
+                footer_contact_title: "Contact",
+                mobile_lang_btn: "🌐 Changer langue",
+                nav_home: "Accueil", nav_shop: "Boutique", nav_sponsor: "Sponsor", nav_projects: "Projets", nav_contact: "Contact"
+            },
+            en: {
+                hero_title: "Contact Us",
+                hero_text: "A question? A suggestion? Our team is here for you. Feel free to contact us via the form or our contact details below.",
+                hero_cta: "Write to us",
+                info_title: "Our coordinates",
+                address_title: "Address",
+                address_text: "IUT of Douala<br>123 University Avenue<br>Douala, Cameroon",
+                phone_title: "Phone",
+                phone_text: "+237 6 55 88 99 00<br>+237 6 77 44 55 66",
+                email_title: "Email",
+                hours_title: "Opening hours",
+                hours_text: "Monday – Friday: 9am – 5pm<br>Saturday: 10am – 2pm<br>Sunday: Closed",
+                form_title: "Send us a message",
+                form_name: "Full name",
+                form_email: "Email",
+                form_phone: "Phone",
+                form_subject: "Subject",
+                form_message: "Message",
+                form_btn: "Send message",
+                newsletter_title: "Stay connected!",
+                newsletter_text: "Subscribe to our newsletter and receive exclusive offers, news and campus events.",
+                newsletter_btn: "Subscribe",
+                faq_title: "Frequently asked questions",
+                faq1_q: "What are the response times?",
+                faq1_a: "We respond to all messages within 48 business hours. For urgent requests, please call us.",
+                faq2_q: "Can I visit the physical store?",
+                faq2_a: "Yes, the store is located on the IUT Douala campus. It is open Monday to Friday from 9am to 5pm.",
+                faq3_q: "How can I become an IUT sponsor?",
+                faq3_a: "Go to our 'Sponsor' page or contact us directly by email at partenariat@boutikecole.com",
+                faq4_q: "Can I offer an internship or job?",
+                faq4_a: "Absolutely! Send us your offer by email or via the form with the subject 'Internship offer'. We will share it with our students.",
+                footer_desc: "The official shop of IUT Douala students. Buy local, support talent.",
+                copyright: "© 2026 Boutik Ecole – IUT of Douala. All rights reserved.",
+                footer_links_title: "Links",
+                footer_contact_title: "Contact",
+                mobile_lang_btn: "🌐 Change language",
+                nav_home: "Home", nav_shop: "Shop", nav_sponsor: "Sponsor", nav_projects: "Projects", nav_contact: "Contact"
+            }
+        };
+
+        function updateLanguage(lang) {
+            const t = translations[lang];
+            
+            document.querySelector('[data-key="hero_title"]').textContent = t.hero_title;
+            document.querySelector('[data-key="hero_text"]').textContent = t.hero_text;
+            const heroCta = document.querySelector('[data-key="hero_cta"]');
+            if(heroCta) heroCta.innerHTML = `${t.hero_cta} <i class="fas fa-arrow-right"></i>`;
+            document.querySelector('[data-key="info_title"]').textContent = t.info_title;
+            document.querySelector('[data-key="form_title"]').textContent = t.form_title;
+            document.querySelector('[data-key="newsletter_title"]').textContent = t.newsletter_title;
+            document.querySelector('[data-key="newsletter_text"]').textContent = t.newsletter_text;
+            const newsletterBtn = document.querySelector('[data-key="newsletter_btn"]');
+            if(newsletterBtn) newsletterBtn.innerHTML = `${t.newsletter_btn} <i class="fas fa-paper-plane"></i>`;
+            document.querySelector('[data-key="faq_title"]').textContent = t.faq_title;
+            document.querySelector('[data-key="footer_desc"]').textContent = t.footer_desc;
+            document.querySelector('[data-key="copyright"]').textContent = t.copyright;
+            
+            // Coordonnées
+            const infoItems = document.querySelectorAll('.info-item');
+            if(infoItems[0]) {
+                infoItems[0].querySelector('h4').textContent = t.address_title;
+                infoItems[0].querySelector('p').innerHTML = t.address_text;
+                infoItems[1].querySelector('h4').textContent = t.phone_title;
+                infoItems[1].querySelector('p').innerHTML = t.phone_text;
+                infoItems[2].querySelector('h4').textContent = t.email_title;
+                infoItems[3].querySelector('h4').textContent = t.hours_title;
+                infoItems[3].querySelector('p').innerHTML = t.hours_text;
+            }
+            
+            // Labels formulaire
+            const formLabels = document.querySelectorAll('.contact-form .form-group label');
+            if(formLabels[0]) formLabels[0].textContent = t.form_name;
+            if(formLabels[1]) formLabels[1].textContent = t.form_email;
+            if(formLabels[2]) formLabels[2].textContent = t.form_phone;
+            if(formLabels[3]) formLabels[3].textContent = t.form_subject;
+            if(formLabels[4]) formLabels[4].textContent = t.form_message;
+            const submitBtn = document.querySelector('.btn-submit');
+            if(submitBtn) submitBtn.innerHTML = `${t.form_btn} <i class="fas fa-arrow-right"></i>`;
+            
+            // FAQ
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            const faqAnswers = document.querySelectorAll('.faq-answer');
+            if(faqQuestions[0]) faqQuestions[0].innerHTML = `${t.faq1_q} <i class="fas fa-chevron-down"></i>`;
+            if(faqAnswers[0]) faqAnswers[0].textContent = t.faq1_a;
+            if(faqQuestions[1]) faqQuestions[1].innerHTML = `${t.faq2_q} <i class="fas fa-chevron-down"></i>`;
+            if(faqAnswers[1]) faqAnswers[1].textContent = t.faq2_a;
+            if(faqQuestions[2]) faqQuestions[2].innerHTML = `${t.faq3_q} <i class="fas fa-chevron-down"></i>`;
+            if(faqAnswers[2]) faqAnswers[2].textContent = t.faq3_a;
+            if(faqQuestions[3]) faqQuestions[3].innerHTML = `${t.faq4_q} <i class="fas fa-chevron-down"></i>`;
+            if(faqAnswers[3]) faqAnswers[3].textContent = t.faq4_a;
+            
+            // Footer
+            const footerTitles = document.querySelectorAll('.footer-col h3');
+            if(footerTitles[1]) footerTitles[1].textContent = t.footer_links_title;
+            if(footerTitles[2]) footerTitles[2].textContent = t.footer_contact_title;
+            
+            const footerLinks = document.querySelectorAll('.footer-col ul li a');
+            const linkKeys = ['home', 'shop', 'sponsor', 'projects', 'contact'];
+            footerLinks.forEach((link, idx) => { if(idx < linkKeys.length) link.textContent = t[`nav_${linkKeys[idx]}`]; });
+            
+            const desktopLinks = document.querySelectorAll('.nav-desktop ul li a');
+            desktopLinks.forEach((link, idx) => { if(idx < linkKeys.length) link.textContent = t[`nav_${linkKeys[idx]}`]; });
+            
+            const mobileLinks = document.querySelectorAll('.mobile-menu-overlay ul li a');
+            mobileLinks.forEach((link, idx) => { if(idx < linkKeys.length) link.textContent = t[`nav_${linkKeys[idx]}`]; });
+            
+            if(mobileGlobeBtn) mobileGlobeBtn.innerHTML = t.mobile_lang_btn;
+        }
+
+        function toggleLang() { 
+            currentLang = currentLang === 'fr' ? 'en' : 'fr'; 
+            updateLanguage(currentLang); 
+        }
+        
+        globeBtn.addEventListener("click", toggleLang);
+        if(mobileGlobeBtn) mobileGlobeBtn.addEventListener("click", () => { toggleLang(); closeMenu(); });
+
+        updateLanguage('fr');
+    </script>
+</body>
+</html>
