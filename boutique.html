@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
     <title>Boutik Ecole | Boutique – IUT de Douala</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -31,7 +31,7 @@
             padding: 0 24px;
         }
 
-        /* HEADER */
+        /* HEADER - TRANSPARENT SUR BANNER */
         header {
             position: absolute;
             top: 0;
@@ -69,14 +69,15 @@
             letter-spacing: -0.5px;
         }
 
-        nav ul {
+        /* Navigation desktop */
+        .nav-desktop ul {
             display: flex;
             list-style: none;
             gap: 28px;
             flex-wrap: wrap;
         }
 
-        nav a {
+        .nav-desktop a {
             text-decoration: none;
             color: white;
             font-weight: 600;
@@ -84,7 +85,7 @@
             transition: 0.2s;
         }
 
-        nav a:hover {
+        .nav-desktop a:hover {
             color: #FFD166;
         }
 
@@ -133,6 +134,103 @@
         .language-globe:hover {
             transform: scale(1.1);
             color: #FFD166;
+        }
+
+        /* MENU HAMBURGER (visible uniquement sur mobile) */
+        .menu-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 200;
+            transition: 0.2s;
+        }
+        .menu-toggle:hover {
+            color: #FFD166;
+        }
+
+        /* Menu mobile overlay */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 320px;
+            height: 100vh;
+            background: white;
+            z-index: 150;
+            transition: right 0.3s ease-in-out;
+            padding: 30px 24px;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        .mobile-menu-overlay.open {
+            right: 0;
+        }
+        .mobile-menu-overlay .close-menu {
+            background: transparent;
+            border: none;
+            font-size: 1.8rem;
+            color: #1e2a2e;
+            align-self: flex-end;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        .mobile-menu-overlay ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+        .mobile-menu-overlay ul li a {
+            text-decoration: none;
+            color: #1e2a2e;
+            font-size: 1.3rem;
+            font-weight: 600;
+            font-family: 'Outfit', sans-serif;
+            transition: 0.2s;
+            display: block;
+            padding: 6px 0;
+        }
+        .mobile-menu-overlay ul li a:hover {
+            color: #FFD166;
+        }
+        .mobile-globe {
+            margin-top: 20px;
+            background: #f0f0f0;
+            border: none;
+            padding: 12px;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: #1e2a2e;
+            transition: 0.2s;
+        }
+        .mobile-globe:hover {
+            background: #FFD166;
+            color: #1e2a2e;
+        }
+        .overlay-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 140;
+            display: none;
+        }
+        .overlay-backdrop.show {
+            display: block;
         }
 
         /* PANIER LATERAL */
@@ -650,7 +748,7 @@
             color: rgba(0,0,0,0.5);
         }
 
-        /* RESPONSIVE MOBILE AMELIORE */
+        /* RESPONSIVE MOBILE - MEME DESIGN QUE CONTACT */
         @media (max-width: 1024px) {
             .video-single-row {
                 flex-direction: column;
@@ -663,101 +761,73 @@
         }
 
         @media (max-width: 780px) {
-            .container {
-                padding: 0 16px;
+            .nav-desktop {
+                display: none;
             }
-            
+            .menu-toggle {
+                display: flex;
+            }
             .header-content {
-                flex-direction: column;
-                text-align: center;
+                justify-content: space-between;
+                align-items: center;
+                gap: 15px;
             }
-            
-            .logo h1 {
-                font-size: 1.4rem;
+            .language-globe {
+                display: none;
             }
-            
-            .logo i {
-                font-size: 1.6rem;
-            }
-            
-            nav ul {
-                justify-content: center;
-                gap: 12px;
-            }
-            
-            nav a {
-                font-size: 0.85rem;
-            }
-            
             .hero-banner {
-                min-height: 350px;
+                min-height: 400px;
             }
-            
             .hero-overlay {
-                min-height: 350px;
-                padding: 80px 16px 40px;
+                min-height: 400px;
+                padding: 80px 20px 40px;
             }
-            
             .hero-overlay h2 {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
             }
-            
             .hero-overlay p {
                 font-size: 0.9rem;
-                padding: 0 10px;
             }
-            
             .category-header {
                 flex-direction: column;
                 align-items: flex-start;
                 margin: 30px 0 20px;
             }
-            
             .category-title-left h3 {
                 font-size: 1.3rem;
             }
-            
             .category-select {
                 width: 100%;
                 min-width: unset;
             }
-            
             .products-grid {
                 grid-template-columns: 1fr;
                 gap: 25px;
             }
-            
             .product-img {
                 height: 220px;
             }
-            
             .product-title {
                 font-size: 0.95rem;
             }
-            
             .video-frame video {
                 height: 200px;
             }
-            
             .gallery-section h3 {
                 font-size: 1.4rem;
                 margin-bottom: 25px;
             }
-            
             .footer-content {
                 grid-template-columns: 1fr;
                 gap: 30px;
                 text-align: center;
             }
-            
             .social-icons {
                 justify-content: center;
             }
-            
             .footer-col ul {
                 padding: 0;
             }
-
             .cart-sidebar {
                 width: 100%;
                 right: -100%;
@@ -765,18 +835,18 @@
         }
 
         @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
             .hero-overlay h2 {
                 font-size: 1.2rem;
             }
-            
             .hero-overlay p {
                 font-size: 0.8rem;
             }
-            
             .product-img {
                 height: 180px;
             }
-            
             .btn-add {
                 padding: 8px 20px;
                 font-size: 0.75rem;
@@ -794,13 +864,14 @@
                         <i class="fas fa-graduation-cap"></i>
                         <h1>Boutik Ecole</h1>
                     </div>
-                    <nav>
+                    <!-- Navigation desktop -->
+                    <nav class="nav-desktop">
                         <ul>
-                            <li><a href="index.html">Accueil</a></li>
-                            <li><a href="boutique.html">Boutique</a></li>
-                            <li><a href="sponsor.html">Sponsor</a></li>
-                            <li><a href="projets.html">Projets</a></li>
-                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="index.html" data-nav-key="home">Accueil</a></li>
+                            <li><a href="boutique.html" data-nav-key="shop">Boutique</a></li>
+                            <li><a href="sponsor.html" data-nav-key="sponsor">Sponsor</a></li>
+                            <li><a href="projets.html" data-nav-key="projects">Projets</a></li>
+                            <li><a href="contact.html" data-nav-key="contact">Contact</a></li>
                         </ul>
                     </nav>
                     <div style="display: flex; gap: 15px;">
@@ -809,10 +880,25 @@
                             <span class="cart-count" id="cartCount">0</span>
                         </button>
                         <button class="language-globe" id="globeBtn">🌐</button>
+                        <button class="menu-toggle" id="menuToggleBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
                     </div>
                 </div>
             </div>
         </header>
+
+        <!-- Overlay mobile -->
+        <div class="overlay-backdrop" id="menuBackdrop"></div>
+        <div class="mobile-menu-overlay" id="mobileMenu">
+            <button class="close-menu" id="closeMenuBtn"><i class="fas fa-times"></i></button>
+            <ul>
+                <li><a href="index.html" data-mobile-nav-key="home">Accueil</a></li>
+                <li><a href="boutique.html" data-mobile-nav-key="shop">Boutique</a></li>
+                <li><a href="sponsor.html" data-mobile-nav-key="sponsor">Sponsor</a></li>
+                <li><a href="projets.html" data-mobile-nav-key="projects">Projets</a></li>
+                <li><a href="contact.html" data-mobile-nav-key="contact">Contact</a></li>
+            </ul>
+            <button class="mobile-globe" id="mobileGlobeBtn">🌐 Changer langue</button>
+        </div>
 
         <!-- HERO BANNER -->
         <div class="hero-banner">
@@ -825,8 +911,8 @@
         <div class="container">
             <div class="category-header">
                 <div class="category-title-left">
-                    <h3>Nos produits</h3>
-                    <p>Sélectionnez une catégorie pour filtrer les produits</p>
+                    <h3 data-key="products_title">Nos produits</h3>
+                    <p data-key="products_subtitle">Sélectionnez une catégorie pour filtrer les produits</p>
                 </div>
                 <div class="category-menu">
                     <select id="categorySelect" class="category-select">
@@ -849,7 +935,7 @@
         <!-- GALERIE VIDÉO -->
         <div class="gallery-section">
             <div class="container">
-                <h3>Galerie Exposition</h3>
+                <h3 data-key="gallery_title">Galerie Exposition</h3>
                 <div class="video-single-row" id="videoGrid"></div>
             </div>
         </div>
@@ -868,17 +954,17 @@
                         </div>
                     </div>
                     <div class="footer-col">
-                        <h3>Liens</h3>
+                        <h3 data-footer-title="links">Liens</h3>
                         <ul>
-                            <li><a href="index.html">Accueil</a></li>
-                            <li><a href="boutique.html">Boutique</a></li>
-                            <li><a href="sponsor.html">Sponsor</a></li>
-                            <li><a href="projets.html">Projets</a></li>
-                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="index.html" data-footer-link="home">Accueil</a></li>
+                            <li><a href="boutique.html" data-footer-link="shop">Boutique</a></li>
+                            <li><a href="sponsor.html" data-footer-link="sponsor">Sponsor</a></li>
+                            <li><a href="projets.html" data-footer-link="projects">Projets</a></li>
+                            <li><a href="contact.html" data-footer-link="contact">Contact</a></li>
                         </ul>
                     </div>
                     <div class="footer-col">
-                        <h3>Contact</h3>
+                        <h3 data-footer-title="contact">Contact</h3>
                         <ul>
                             <li><i class="fas fa-map-marker-alt"></i> IUT de Douala, Cameroun</li>
                             <li><i class="fas fa-envelope"></i> contact@boutikecole.com</li>
@@ -1041,6 +1127,17 @@
             document.getElementById('cartOverlay').classList.remove('show');
         }
 
+        // Menu hamburger
+        const menuToggle = document.getElementById('menuToggleBtn');
+        const mobileMenuDiv = document.getElementById('mobileMenu');
+        const menuBackdrop = document.getElementById('menuBackdrop');
+        const closeMenuBtn = document.getElementById('closeMenuBtn');
+        function openMenu() { mobileMenuDiv.classList.add('open'); menuBackdrop.classList.add('show'); document.body.style.overflow = 'hidden'; }
+        function closeMenu() { mobileMenuDiv.classList.remove('open'); menuBackdrop.classList.remove('show'); document.body.style.overflow = ''; }
+        if(menuToggle) menuToggle.addEventListener('click', openMenu);
+        if(closeMenuBtn) closeMenuBtn.addEventListener('click', closeMenu);
+        if(menuBackdrop) menuBackdrop.addEventListener('click', closeMenu);
+
         function renderProducts(category) {
             const filtered = category === "all" ? products : products.filter(p => p.category === category);
             const grid = document.getElementById("productsGrid");
@@ -1102,24 +1199,70 @@
             fr: {
                 hero_title: "La boutique officielle de l'IUT de Douala",
                 hero_text: "Découvrez les produits fabriqués par nos étudiants : produits de beauté, snacks, vins, pommades et bien plus encore. Soutenez le savoir-faire local !",
+                products_title: "Nos produits",
+                products_subtitle: "Sélectionnez une catégorie pour filtrer les produits",
+                gallery_title: "Galerie Exposition",
                 footer_desc: "La boutique officielle des étudiants de l'IUT de Douala. Achetez local, soutenez le talent.",
-                copyright: "© 2026 Boutik Ecole – IUT de Douala. Tous droits réservés."
+                copyright: "© 2026 Boutik Ecole – IUT de Douala. Tous droits réservés.",
+                footer_links_title: "Liens",
+                footer_contact_title: "Contact",
+                mobile_lang_btn: "🌐 Changer langue",
+                nav_home: "Accueil", nav_shop: "Boutique", nav_sponsor: "Sponsor", nav_projects: "Projets", nav_contact: "Contact"
             },
             en: {
                 hero_title: "The official store of IUT Douala",
                 hero_text: "Discover products made by our students: beauty products, snacks, wines, ointments and more. Support local know-how!",
+                products_title: "Our products",
+                products_subtitle: "Select a category to filter products",
+                gallery_title: "Exhibition Gallery",
                 footer_desc: "The official shop of IUT Douala students. Buy local, support talent.",
-                copyright: "© 2026 Boutik Ecole – IUT of Douala. All rights reserved."
+                copyright: "© 2026 Boutik Ecole – IUT of Douala. All rights reserved.",
+                footer_links_title: "Links",
+                footer_contact_title: "Contact",
+                mobile_lang_btn: "🌐 Change language",
+                nav_home: "Home", nav_shop: "Shop", nav_sponsor: "Sponsor", nav_projects: "Projects", nav_contact: "Contact"
             }
         };
 
         function updateLanguage(lang) {
             currentLang = lang;
-            document.querySelector('[data-key="hero_title"]').textContent = translations[lang].hero_title;
-            document.querySelector('[data-key="hero_text"]').textContent = translations[lang].hero_text;
-            document.querySelector('[data-key="footer_desc"]').textContent = translations[lang].footer_desc;
-            document.querySelector('[data-key="copyright"]').textContent = translations[lang].copyright;
+            const t = translations[lang];
+            
+            document.querySelector('[data-key="hero_title"]').textContent = t.hero_title;
+            document.querySelector('[data-key="hero_text"]').textContent = t.hero_text;
+            document.querySelector('[data-key="products_title"]').textContent = t.products_title;
+            document.querySelector('[data-key="products_subtitle"]').textContent = t.products_subtitle;
+            document.querySelector('[data-key="gallery_title"]').textContent = t.gallery_title;
+            document.querySelector('[data-key="footer_desc"]').textContent = t.footer_desc;
+            document.querySelector('[data-key="copyright"]').textContent = t.copyright;
+            
+            // Footer titles
+            const footerTitles = document.querySelectorAll('.footer-col h3');
+            if(footerTitles[1]) footerTitles[1].textContent = t.footer_links_title;
+            if(footerTitles[2]) footerTitles[2].textContent = t.footer_contact_title;
+            
+            // Desktop navigation links
+            const desktopLinks = document.querySelectorAll('.nav-desktop ul li a');
+            const linkKeys = ['home', 'shop', 'sponsor', 'projects', 'contact'];
+            desktopLinks.forEach((link, idx) => { if(idx < linkKeys.length) link.textContent = t[`nav_${linkKeys[idx]}`]; });
+            
+            // Mobile navigation links
+            const mobileLinks = document.querySelectorAll('.mobile-menu-overlay ul li a');
+            mobileLinks.forEach((link, idx) => { if(idx < linkKeys.length) link.textContent = t[`nav_${linkKeys[idx]}`]; });
+            
+            // Footer links
+            const footerLinks = document.querySelectorAll('.footer-col ul li a');
+            footerLinks.forEach((link, idx) => { if(link && idx < linkKeys.length) link.textContent = t[`nav_${linkKeys[idx]}`]; });
+            
+            const mobileGlobeBtn = document.getElementById('mobileGlobeBtn');
+            if(mobileGlobeBtn) mobileGlobeBtn.innerHTML = t.mobile_lang_btn;
+            
             renderProducts(document.getElementById("categorySelect").value);
+        }
+
+        function toggleLang() { 
+            currentLang = currentLang === 'fr' ? 'en' : 'fr'; 
+            updateLanguage(currentLang); 
         }
 
         // Événements
@@ -1142,15 +1285,16 @@
         });
 
         const globeBtn = document.getElementById('globeBtn');
-        globeBtn.addEventListener("click", () => {
-            const newLang = currentLang === 'fr' ? 'en' : 'fr';
-            updateLanguage(newLang);
-        });
+        globeBtn.addEventListener("click", toggleLang);
+        
+        const mobileGlobeBtn = document.getElementById('mobileGlobeBtn');
+        if(mobileGlobeBtn) mobileGlobeBtn.addEventListener("click", () => { toggleLang(); closeMenu(); });
 
         // Initialisation
         loadCart();
         renderProducts("all");
         renderVideos();
+        updateLanguage('fr');
     </script>
 </body>
 </html>
